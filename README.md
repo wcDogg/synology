@@ -1,2 +1,1 @@
-# synology
-Synology NAS setup &amp; useage notes.
+# Synology DS720+ with DSM7
