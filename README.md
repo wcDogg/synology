@@ -10,6 +10,7 @@ Managed from Windows 11 Pro, which usually doesn't matter, sometimes does.
 ## Contents
 
 * [Inital Setup](nas-setup.md)
+* 
 * [SSH](ssh.md)
 * [Docker + Portainer](docker-portainer.md)
 * Proxy manager + reverse proxy
