@@ -20,16 +20,7 @@
 
 ## Default Ports
 
-Some steps suggest changing the default ports. Other steps require defining a port.
-
-* [Synology: DSM Services Ports](https://kb.synology.com/en-global/DSM/tutorial/What_network_ports_are_used_by_Synology_services)
-* [Synology: How do I know if a TCP port is open or closed?](https://kb.synology.com/tr-tr/DSM/tutorial/Whether_TCP_port_is_open_or_closed)
-
-```
-# See running services.
-# SSH as root
-netstat -pat | grep LISTEN
-```
+Some steps suggest changing the default ports. Other steps require defining a port. See [README: Ports](README.md/#ports).
 
 ## Initial
 
