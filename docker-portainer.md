@@ -10,11 +10,16 @@ All roads lead to using compose files over the Synology GUI. The 2 most recomend
 * Use the NAS-native Docker Compose
 * Use Portainer.io
 
-For Docker Compose, updating is recomended. An explantaion of why this failed is given below. The result is we'll be using Portainer. Some key differences:
+For Docker Compose, updating is recomended. An explantaion of why this failed is given below. The result is we'll be using Portainer. 
 
-* Portainer handles the mounting
-* Portainer handles the macLAN
-* Portainer makes it easy to paste in config
+## Examples
+
+```
+example.com = Domain registered with Namecheap
+sub.example.com = Subdomain with A record on Namecheap
+3x.xxx.xxx.xx = Fios router public IP
+192.xxx.x.xxx = NAS internal static IP
+```
 
 ## Portainer.io
 
@@ -28,26 +33,73 @@ Portainer runs inside your Docker install. It's a container creation & managment
 
 1. DSM > File Station > docker > Create Folder > portainer-ce
 2. SSH as root and install - this step configures Portainer and mounts `portainer-ce`. 
-   1. `volume1` is default, update if needed. 
-   2. This sets Portaier's ports to 8000 + 9000. 
+   1. 8000:8000 = http port
+   2. 9000:9000 = https port
+   3. `volume1` is default, update if needed. 
    
 ```
 NAS
 sudo -i
 password
 
-# volume1 is default, update if needed.
-
 sudo docker run -p 8000:8000 -p 9000:9000 --detach --name=portainer-ce --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /volume1/docker/portainer-ce:/data portainer/portainer-ce
 
 exit
 ```
 
-3. DSM > Control Panel > Security > Firewall > Enable port 8000.
-4. https://nasip:8000
-5. Create Portaino username + password.
-6. On the Quick Setup screen, select Proceed Using Local...
-7. From here you can click on the local Docker instance and manage. 
+### Firewall Rule
+
+1. Control Panel > Security > Firewall > Defualt Profile > Edit Rules > Add Rule.
+2. Port > Select from list > Portainer 8000, 9000
+
+### Account
+
+3. 192.xxx.x.xxx:9000
+4. Create Portaino username + password.
+5. On the Quick Setup screen, select Proceed Using Local...
+6. From here you can click on the local Docker instance and manage. 
+
+```
+# Not found
+192.xxx.x.xxx:8000
+http://192.xxx.x.xxx:8000
+
+# Found, not secure
+192.xxx.x.xxx:9000
+http://192.xxx.x.xxx:9000
+
+# Secure connection failed
+https://192.xxx.x.xxx:9000
+```
+
+### Container Ports
+
+At this point, if you go to Portainer > Containers > portainer-ce > and click the 9000 port, the URL loads as 0.0.0.0. To fix this:
+
+1. Portainer > Environments > local > Public IP = NAS IP = 192.xxx.x.xxx
+
+## Reverse Proxy
+
+See: [Custom Domains + Reverse Proxy](custom-domain.md#synology-reverse-proxy)
+
+Noting this because the ports were confusing. You would think the destination would need to be HTTPS and 9000, but it's actually HTTP and 9000. I can't explain how this results in secure login, but it does.  
+
+Also tried enforcing HTTPS via Portainer's settings. Once applied, no combination of protocol + IP + port allowed access. To fix, I needed to delete and reinstall Portainer. 
+
+1. Description = Portainer HTTPS
+   1. Source
+      1. Protocol = HTTPS 
+      2. Hostname = portainer.example.com
+      3. Port = 443
+   2. Enable HSTS = True if possible, False for now
+   3. Destination
+      1. Protocol = HTTP !!!
+      2. Hostname = 192.xxx.x.xxx
+      3. Port = 9000
+   4. HSTS = False
+2. Control Panel > Security > Firewall - Close ports 8000 + 9000
+3. Control Panel > Security > Certificate - Map portainer.example.com to correct cert
+4. Test https://portainer.example.com
 
 
 ## FAIL: Update Docker Compose

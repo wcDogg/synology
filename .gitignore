@@ -1,5 +1,5 @@
 # Ignore sensitive files
-.env
+.env*
 
 # Ignore VS Code
 .vscode

@@ -1,19 +1,20 @@
 # SSH to Synology NAS
 
+Note that SSH access should only be permitted as-needed and blocked the rest of the time. The way we're configured, the simplest way to toggle access is via its Synology firewall rule. 
 
 ## SSH with Password
 
 https://www.youtube.com/watch?v=BCCIMRbAUp8
 
-1. Control Panel > Terminal & SNMP > Terminal tab.
-2. Enable SSH service and set a random port. (49200)
-3. Control Panel > Security > Firewall tab.
-4. Default profile > Edit Rules link.
-5. Firewall Rules > Create > Ports > Select from list of apps.
-6. Check box: Encrypted Terminal Services (SSH).
+1. DSM > Control Panel > Terminal & SNMP > Terminal tab.
+   1. Enable SSH service and set a random port. (49200)
+2. Control Panel > Security > Firewall tab.
+   1. Default profile > Edit Rules link.
+   2. Firewall Rules > Create > Ports > Select from list of apps.
+   3. Check box: Encrypted Terminal Services (SSH).
 
 ```
-ssh username@192.x.x.xxx -p49200
+ssh nasuser@192.x.x.xxx -p49200
 password
 
 # escalate to root
@@ -34,7 +35,7 @@ Big idea: Create a keypair, place into the Windows Security context, copy public
 
 These are shallow instructions. The detailed process is here: [openSSH](https://github.com/CornDoggSoup/windows/blob/main/windows-11-pro-openSSH.md).
 
-IMPORTANT: This will be our second key. Ensure to append - and not overwrite -  `C:\ProgramData\ssh\administrators_authorized_keys`. 
+IMPORTANT: This will be our second key. Be sure to append - and not overwrite -  `C:\ProgramData\ssh\administrators_authorized_keys`. 
 
 ### Backup `authorized_keys` file
 
@@ -47,10 +48,10 @@ Copy-Item "C:\ProgramData\ssh\administrators_authorized_keys" -Destination "C:\P
 ```
 # Log in to SSH server
 
-ssh wcd@wcdPC
+ssh me@myPC
 
 # Generate 4096 bit key of type rsa
-# Save path = C:\Users\wcd/.ssh/id_wcd_rsa4096
+# Save path = C:\Users\me/.ssh/id_me_rsa4096
 
 ssh-keygen -t rsa -b 4096
 ```
@@ -62,20 +63,21 @@ ssh-keygen -t rsa -b 4096
 Get-Service ssh-agent | Set-Service -StartupType Manual
 Start-Service ssh-agent
 Get-Service ssh-agent
-ssh-add C:\Users\wcd\.ssh\id_wcd_rsa4096
+ssh-add C:\Users\me\.ssh\id_me_rsa4096
 
 # This is the different step.
 # Append authorized_keya.
 
-cat C:\Users\wcd\.ssh\id_wcd_rsa4096.pub >> C:\ProgramData\ssh\administrators_authorized_keys
+cat C:\Users\me\.ssh\id_me_rsa4096.pub >> C:\ProgramData\ssh\administrators_authorized_keys
 ```
 
 ## NAS
 
 I found this easier to do from the NAS vs Powershell.
 
-1. DSM > File Station > home. Create .ssh directory.
-2. Upload public key and rename it `authorized_keys`. Note subsequent keys are appended to this file.
+1. DSM > File Station > home 
+2. Create .ssh directory
+3. Upload public key and rename it `authorized_keys`. Note subsequent keys are appended to this file.
 
 ### Each User
 
@@ -120,6 +122,6 @@ Add this to user's profile - and not the global profile.
 
 ```
 # SSH to NAS
-function NAS {ssh user@192.168.1.xxx -pxxxxx}
+function NAS {ssh nasuser@192.xxx.x.xxx -p49200}
 ```
 
