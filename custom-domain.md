@@ -22,7 +22,6 @@ sub.example.com = Subdomain with A record on Namecheap
 192.xxx.x.xxx = NAS internal static IP
 ```
 
-
 ## Namecheap DDNS
 
 1. Namecheap > Domain > Manage > Advanced DNS
@@ -144,7 +143,6 @@ EOF
   
 HTTP2 = True - Perfomance boost in browsers that support this protocol. 
 
-
 ## Synology Custom DDNS
 
 1. DSM > Control Panel > External Access > DDNS > Add
@@ -154,7 +152,6 @@ HTTP2 = True - Perfomance boost in browsers that support this protocol.
 5. Password/Key = Namecheap Dynamic DNS password
 6. External address = Auto
 7. Test connection = Normal
-
 
 ## SSL Certificate
 
@@ -179,7 +176,6 @@ sub1.example.com;sub2.example.com
 
 * example.com should take you to the secure DSM login page on port 6050 (5001). 
 * Internal IP on 6049 + 6050 should also still work. 
-
 
 ## Synology Reverse Proxy
 
@@ -239,7 +235,7 @@ Here I'n mot sure what happened. Either I never set up forwarding on 6049 and 60
 
 Used in lieu of firewall rules to restrict a given reverse proxy to specific IP addresses. We aren't using this at this time. 
 
-## Firewall
+## Synology Firewall
 
 1. Control Panel > Security > Firewall
 2. Enable firewall = True

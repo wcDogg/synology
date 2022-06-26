@@ -29,6 +29,47 @@ Portainer runs inside your Docker install. It's a container creation & managment
 * https://www.youtube.com/watch?v=bLHWxtrU8Tg
 * https://www.wundertech.net/how-to-install-portainer-on-a-synology-nas
 
+## Composerize
+
+https://www.composerize.com/
+
+```
+# Converts commands
+docker run -d --name vaultwarden -v /volume1/docker/vaultwarden/:/data/ -p 8080:80 vaultwarden/server:latest
+
+# To Compose
+# version = Docker Compose version = 2
+version: '2'
+
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    restart: unless-stopped
+    environment:
+      WEBSOCKET_ENABLED: "true"  # Enable WebSocket notifications.
+    volumes:
+      - /volume1/docker/vaultwarden:/data
+    ports:
+      - 8080:80
+```
+
+
+## Ports
+
+You'll typically need to map a container's baked-in ports to [unused local ports on your NAS](README.md/#ports). In the GUI, these are clearly labeled. For compose files and commands, the first port is the local port - the port to change. The second is the container port as given in the documentation. 
+
+```
+# local port : container port
+
+-p 2280:80
+
+ports:
+   - '2280:80'
+   - '2281:81'
+   - '22443:443'
+```
+
 ## Install Portaino
 
 1. DSM > File Station > docker > Create Folder > portainer-ce
@@ -82,7 +123,7 @@ At this point, if you go to Portainer > Containers > portainer-ce > and click th
 
 See: [Custom Domains + Reverse Proxy](custom-domain.md#synology-reverse-proxy)
 
-Noting this because the ports were confusing. You would think the destination would need to be HTTPS and 9000, but it's actually HTTP and 9000. I can't explain how this results in secure login, but it does.  
+Noting this because the ports were confusing. You would think the destination needs to be HTTPS and 9000, but it's actually HTTP and 9000. I can't explain how this results in secure login, but it does.  
 
 Also tried enforcing HTTPS via Portainer's settings. Once applied, no combination of protocol + IP + port allowed access. To fix, I needed to delete and reinstall Portainer. 
 

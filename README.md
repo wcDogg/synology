@@ -7,6 +7,7 @@ Managed from Windows 11 Pro, which usually doesn't matter, sometimes does.
 * [WunderTech YouTube](https://www.youtube.com/c/WunderTechTutorials)
 * [WunderTech Blog](https://www.wundertech.net/)
 
+
 ## Ports
 
 At several points you'll change a defualt port or define a new port. 
@@ -16,18 +17,13 @@ At several points you'll change a defualt port or define a new port.
 * [Synology: How do I know if a TCP port is open or closed?](https://kb.synology.com/tr-tr/DSM/tutorial/Whether_TCP_port_is_open_or_closed)
 
 
-```
-# SSH as root. See running services.
-netstat -pat | grep LISTEN
-```
-
 ## Contents
 
 * [Inital Setup](nas-setup.md)
-* [SSH](ssh.md)
+* [SSH with password or key pair](ssh.md)
+* [Custom Subdomains + Reverse Proxy](custom-domain.md)
 * [Docker + Portainer](docker-portainer.md)
-* Proxy manager + reverse proxy
-* Bitwarden in Docker
-* PiHole + Unbound in Docker
-* 
+* [Vaultwarden in Portainer](vaultwarden.md)
+* PiHole + Unbound in Portainer
+
 
