@@ -188,7 +188,7 @@ mkdir /volume1/docker/pihole/dnsmasq.d
 nslookup
 > server 192.168.1.216 
 > youtube.com
-# Responses shoud resolve. Default server should = Pi-hole macvlan IP
+# Responses should resolve. Default server should = Pi-hole macvlan IP
 ```
 4. Pi-hole works via bridge:
 
@@ -197,7 +197,7 @@ NAS
 nslookup
 > server
 > youtube.com
-# Responses shoud resolve. Server should = Pi-hole bridge IP
+# Responses should resolve. Server should = Pi-hole bridge IP
 ```
 
 ## Unbound

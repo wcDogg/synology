@@ -20,7 +20,7 @@
 
 ## Default Ports
 
-Some steps suggest changing the default ports. Other steps require defining a port. See [README: Ports](README.md/#ports).
+Some steps suggest changing the default ports. Other steps require defining a port. 
 
 ## Initial
 
@@ -35,18 +35,18 @@ https://www.youtube.com/watch?v=6ZyC2nx65j8
 
 ## DSM 7.1
 
-1. Welcom screen loads. **Start**.
+1. Welcome screen loads. **Start**.
 2. Create device name + admin account.
 3. Update option = Automatically install important...
 4. Optional: Sign in to Synology account.
-5. Skp Quick Connect.
+5. Skip Quick Connect.
 6. Other Tools: enable both Active Insights and DSM Configuration Backup.
 7. Create a Storage Pool & Volume.
    1. Create Pool = MainPool
    2. RAID = SHR because we'll be adding drives in the future.
    3. Select both drives.
    4. Perform drive check.
-   5. Create Volumne = MainVolume. Use BTFS file system.
+   5. Create Volume = MainVolume. Use BTFS file system.
    1. Confirm and Apply. Wait for the Pool + Volume to finish optimizing - about 90 minutes.
 
 ## Shared Folder
