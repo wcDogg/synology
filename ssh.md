@@ -79,6 +79,28 @@ I found this easier to do from the NAS vs Powershell.
 2. Create .ssh directory
 3. Upload public key and rename it `authorized_keys`. Note subsequent keys are appended to this file.
 
+```
+# Example of how to get:
+# "D:\.ssh\id_madNAS_rsa4096.pub" to here:
+# "/volume1/homes/msoup/.ssh/authorized_keys" >
+
+scp -P 49200 d:/.ssh/id_madNAS_rsa4096.pub wcdogg@wcdNAS:/volume1/homes/msoup/.ssh/
+
+NAS
+cd /volume1/homes/msoup/.ssh/
+ls
+
+# Overwrite current authorized_keys files
+cat id_madNAS_rsa4096.pub > authorized_keys
+
+# Update permissions 
+chmod 600 .ssh/authorized_keys
+
+# View file
+vim authorized_keys
+:q
+```
+
 ### Each User
 
 ```
