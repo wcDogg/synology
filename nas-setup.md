@@ -1,30 +1,32 @@
-# Synoloyg DS920+ with DSM 7
-
-* https://www.youtube.com/watch?v=MyQy4Wj679A&t=24s
-* https://www.wundertech.net/synology-nas-initial-setup-ultimate-guide
+# Synology DS920+ with DSM 7 Setup
 
 
-## Connections
+## Physical Connections
 
-1. NAS to Router
-2. NAS to UPS
+1. NAS to router / ethernet
+2. NAS to UPS / power cable
+3. NAS to UPS / USB cable
+
 
 ## Static IP
 
-1. Fios > Network Settings > IPv4 Address Distribution > Connection List.
-2. Device > Edit > Static Lease Type checkbox.
+Assign NAS a static IP address on your router. I have a Fios G3100. For me the steps are:
+
+1. Log in to the router.
+2. Switch to the Advanced tab.
+3. Network Settings > IPv4 Address Distribution
+4. SynologyNAS > Edit
+5. Static Lease Type = True / checked
+
 
 ## Synology Account
 
-1. Create a Synology account prior to starting.
+Create a Synology account prior to starting.
 
-## Default Ports
+* https://www.synology.com/en-us
 
-Some steps suggest changing the default ports. Other steps require defining a port. 
 
-## Initial
-
-https://www.youtube.com/watch?v=6ZyC2nx65j8
+## Locate NAS & Install DSM
 
 1. In a browser, go to: https://find.synology.com
 2. Verify info & click **Connect** - IP should match static assigned in previous step.
@@ -32,6 +34,7 @@ https://www.youtube.com/watch?v=6ZyC2nx65j8
 4. Review Privacy Statement. **Continue**.
 5. Web Assistant loads. **Setup**.
 6. Install DSM. Takes about 10 minutes. NAS will beep during.
+
 
 ## DSM 7.1
 
@@ -49,78 +52,132 @@ https://www.youtube.com/watch?v=6ZyC2nx65j8
    5. Create Volume = MainVolume. Use BTFS file system.
    1. Confirm and Apply. Wait for the Pool + Volume to finish optimizing - about 90 minutes.
 
+
 ## Shared Folder
 
 1. DSM > Control Panel > Shared Folder.
-2. Set Name, Description, permissions.
+2. Set name, description, permissions.
+
 
 ## Home Services
 
-1. Control Panel > User & Group > User Home - enable service.
-2. Control Panel > Shared Folder > homes > Edit.
-3. Check: Hide sub-folders from users without permissions.
-4. Check: Enable Recycle Bin. 
+1. Control Panel > User & Group > Advanced tab 
+   1. Enable user home service = True/checked
+   2. Apply
+2. Control Panel > Shared Folder 
+   1. homes > Edit 
+   2. Hide sub-folders from users without permissions = True/checked
+   3. Enable Recycle Bin = True/checked
+   4. Save
 
-## Data Scurbbing Schedule
+
+## Data Scrubbing Schedule
 
 1. DSM > Storage Manager
-2. In the left panel, select a storage pool.
-3. Select the Schedule Data Scrubbing tab.
-4. On the next screen, select the pool and frequency.
+2. In the left panel, select a storage pool - Storage Pool 1.
+3. Select the Schedule Data Scrubbing tab - a dialog opens.
+4. Enable data scrubbing schedule = True/checked
+5. The correct pool should already be selected.
+6. Frequency = Repeat Monthly
+7. Optional - Run data scrubbing only during specific periods
+8. Save
+
 
 ## Snapshots
 
-https://www.youtube.com/watch?v=mStoaZjJhJE
+1. DSM > Storage Manager
+   1. In the left panel, select a volume - Volume 1
+   2. On the main screen, in the Volume 1 section, click the *** menu > Settings
+   3. Record File Access Time Frequency = Never
+   4. Save
+2. DSM > Package Center
+   1. Install Snapshot Replication and open app
+   2. In the left panel, select Snapshots
+   3. Click the Settings button
+   4. Schedule tab
+      1. Enable Snapshot Schedule = True/checked
+      2. Set a schedule that's appropriate
+   5. Retention tab
+      1. Enable Retention Policy = True/checked
+      2. Keep all snapshots for = 7 days
+   6. OK
 
-1. DSM > Package Center > install Snapshot Replication.
-2. Enable daily snapshots.
-3. Set 14 day retention policy.
 
 ## Recycle Bin
 
-1. DSM > Control Panel > Task Scheduler.
-2. Create > Schedule Task > Recycle Bin.
-3. Schedule tab > Set daily.
-4. Task Setting tab > Empty all Recycle Bins.
-5. Task Setting tab > Retention Policy = 30 days.
+1. DSM > Control Panel > Task Scheduler
+2. Create > Schedule Task > Recycle Bin
+3. General tab
+   1. Task Name = Empty recycle bins
+   2. Enabled = True/checked
+4. Schedule tab
+   1. Run on the following days = Daily
+   2. Frequency = Every day
+5. Task Setting tab 
+   1. Empty all Recycle Bins = True
+   2. Number of days to retain deleted files = 7
+6. OK
+
 
 ## Storage Analyzer
 
-https://youtu.be/MyQy4Wj679A?t=534
-
 1. DSM > Control Panel > Shared Folder. Create a new directory to store reports.
 1. DSM > Package Center > Install Storage Analyzer.
-2. See video for step-by-step.
+2. See video for step-by-step: https://youtu.be/MyQy4Wj679A?t=534
+
 
 ## UPS
 
 1. Connect NAS to UPS using the provided USB cable.
-2. DSM > Control Panel > Hardware & Power > UPS tab.
-3. Enable support.
-4. Select USB USP.
-5. Customize Time = 5 minutes.
+2. DSM > Control Panel > Hardware & Power > UPS tab
+3. Enable UPS Support = True/checked
+4. UPS Type = USB USP
+5. Customize Time = 5 minutes
+6. Apply
 
-## Notifications
-
-https://www.youtube.com/watch?v=wXCYEby3FJ8
 
 ## Security
 
 https://www.youtube.com/watch?v=MISc_uqf0Q4
 
-1. Auto-Update: Control Panel > Update & Restore. Select the recommended option.
-2. Change default ports: Control Panel > Login Portal. 
-   1. Change ports to something like 6049 and 6050.
-   2. Check box: Auto redirect to HTTPS.
-3. DoS Protection: Control Panel > Security > Protection tab. Enable DOS protection. Enable Auto-Block. Whitelist IP addresses.
+1. DSM > Control Panel > Update & Restore > DSM Update tab
+   1. Click Update Settings - a dialog opens
+   2. Select an update option - I selected the recommended option
+   3. Set a Check Schedule
+   4. OK
+2. DSM > Control Panel > Login Portal > DSM tab
+   1. Change DSM Port (HTTP) to 6049
+   2. Change DSM Port (HTTPS) to 6050
+   3. Automatically redirect HTTP to HTTPS = True/checked
+   4. Save
+3. DSM > Control Panel > Security > Protection tab
+   1. Enable Auto-Block = True/checked
+      1. Login Attempts = 10
+      2. Within Minutes = 5
+   2. Enable Block Expiration = True/checked
+      1. Unlock After Days = 1
+   3. Enable DoS Protection = True/checked
+   4. Apply
 
 ## 2FA
 
-https://www.youtube.com/watch?v=r3adGcCjr2M
+1. DSM > User menu (upper-right) > Personal > Account tab
+2. Sign-in Method = 2 Factor Authentication
+3. Follow prompts
 
-1. 2FA: DSM > User icon (upper-right) > Account tab. 
 
 ## Firewall
 
 https://www.youtube.com/watch?v=G3BJo4B1GgU&t=0s
 
+
+## Notifications
+
+https://www.youtube.com/watch?v=wXCYEby3FJ8
+
+
+## References
+
+* https://www.youtube.com/watch?v=MyQy4Wj679A&t=24s
+* https://www.wundertech.net/synology-nas-initial-setup-ultimate-guide
+* https://www.youtube.com/watch?v=mStoaZjJhJE
