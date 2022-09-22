@@ -4,12 +4,17 @@ A running list of port configurations.
 
 ```bash
 # DSM > Control Panel > Login Portal > DSM tab
-6049    # NAS HTTP
-6050    # NAS HTTPS
+6049/TCP    # NAS HTTP
+6050/TCP    # NAS HTTPS, Synology Photos
 
 # DSM > Control Panel > Terminal & SNMP > Terminal tab
-49200   # NAS SSH 
+49200/TCP   # NAS SSH 
 
+# Servers
+32400/TCP   # Plex
+
+# Let's Encrypt
+80/TCP
 ```
 
 ## References

@@ -2,18 +2,20 @@
 
 Note that SSH access should only be permitted as-needed and blocked the rest of the time. The way we're configured, the simplest way to toggle access is via its Synology firewall rule. 
 
-## SSH with Password
+## Enable SSH
 
 1. DSM > Control Panel > Terminal & SNMP > Terminal tab
    1. Enable SSH Service = True/checked
    2. Port = 49200
    3. Apply
 2. DSM Control Panel > Security > Firewall tab
-   1. Enable Firewall = True/checked
-   2. Firewall Profile > default > Edit Rules button - dialog opens
-   3. Firewall Rules > Create > Ports > Select from list of apps
-   4. Encrypted Terminal Services (SSH) = True/checked
-   5. OK. OK. OK.
+   1. Firewall Profile > default > Edit Rules button - dialog opens
+   2. Firewall Rules > Create > Ports > Custom = 49200/TCP
+   3. OK
+   4. Ensure the Deny All rule is at bottom
+   
+   
+## SSH with Password
 
 ```powershell
 ssh wcdogg@192.168.1.209 -p49200 

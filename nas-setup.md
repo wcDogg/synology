@@ -167,7 +167,7 @@ https://www.youtube.com/watch?v=MISc_uqf0Q4
 1. DSM > Control Panel > Login Portal > DSM tab
 2. Change DSM Port (HTTP) to 6049
 3. Change DSM Port (HTTPS) to 6050
-4. Automatically redirect HTTP to HTTPS = False for now
+4. Automatically redirect HTTP to HTTPS = True
 5. Save
 
 
@@ -179,11 +179,14 @@ https://www.youtube.com/watch?v=G3BJo4B1GgU&t=0s
 2. Enable Firewall = True
 3. Enable Firewall Notifications = True
 4. Firewall Profile = Default > Edit Rules - dialog opens
-5. Ports > Select from List of Built-In Apps
-   1. 6049 DSM HTTP
-   2. 6050 DSM HTTPS
-   3. 20, 49200 SSH
+5. Create > Ports > Custom Port
+   1. 49200/TCP Allow (SSH)
+   2. 6049/TCP Allow (HTTP)
+   3. 6050/TCP Allow (HTTPS)
+   4. 80/TCP Allow (HTTP Let's Encrypt)
+   5. All Deny
 6. OK. OK. OK. Confirmation msg.
+7. IMPORTANT: Always ensure the Deny All rule is last - at bottom of list.
 
 
 ## Sign In to Web UI
