@@ -1,8 +1,11 @@
-# Port Reference
+# Network Reference
 
-A running list of port configurations.
+
 
 ```bash
+# NAS static IP
+192.168.1.209
+
 # DSM > Control Panel > Login Portal > DSM tab
 6049/TCP    # NAS HTTP
 6050/TCP    # NAS HTTPS, Synology Photos
@@ -14,7 +17,8 @@ A running list of port configurations.
 32400/TCP   # Plex
 
 # Let's Encrypt
-80/TCP
+80/TCP    
+443/TCP
 ```
 
 ## References

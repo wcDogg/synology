@@ -173,7 +173,7 @@ https://www.youtube.com/watch?v=MISc_uqf0Q4
 
 ## Firewall
 
-https://www.youtube.com/watch?v=G3BJo4B1GgU&t=0s
+These are the temporary rules needed during configuration. Ultimately, I use NGINX Proxy Manager to limit ports. 
 
 1. DSM > Control Panel > Security > Firewall
 2. Enable Firewall = True
@@ -184,7 +184,8 @@ https://www.youtube.com/watch?v=G3BJo4B1GgU&t=0s
    2. 6049/TCP Allow (HTTP)
    3. 6050/TCP Allow (HTTPS)
    4. 80/TCP Allow (HTTP Let's Encrypt)
-   5. All Deny
+   5. 443/TCP Allow (HTTPS)
+   6. All Deny
 6. OK. OK. OK. Confirmation msg.
 7. IMPORTANT: Always ensure the Deny All rule is last - at bottom of list.
 
@@ -206,3 +207,4 @@ https://www.youtube.com/watch?v=wXCYEby3FJ8
 * https://www.youtube.com/watch?v=MyQy4Wj679A&t=24s
 * https://www.wundertech.net/synology-nas-initial-setup-ultimate-guide
 * https://www.youtube.com/watch?v=mStoaZjJhJE
+* https://www.youtube.com/watch?v=G3BJo4B1GgU&t=0s

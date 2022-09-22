@@ -7,7 +7,7 @@ A technical writer's notes on setting up a Synology NAS managed from Windows 11 
 
 * [Synology DS920+ with DSM 7 Setup](nas-setup.md)
 * [SSH to Synology NAS](openSSH.md)
-* [Port Reference](ports.md)
+* [Network Reference](network.md)
 * [Reinstall DSM 7](reinstall-dsm.md)
 
 ## Resources
