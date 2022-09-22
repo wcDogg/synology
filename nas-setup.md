@@ -145,11 +145,6 @@ https://www.youtube.com/watch?v=MISc_uqf0Q4
    2. Select an update option - I selected the recommended option
    3. Set a Check Schedule
    4. OK
-2. DSM > Control Panel > Login Portal > DSM tab
-   1. Change DSM Port (HTTP) to 6049
-   2. Change DSM Port (HTTPS) to 6050
-   3. Automatically redirect HTTP to HTTPS = True/checked
-   4. Save
 3. DSM > Control Panel > Security > Protection tab
    1. Enable Auto-Block = True/checked
       1. Login Attempts = 10
@@ -159,6 +154,7 @@ https://www.youtube.com/watch?v=MISc_uqf0Q4
    3. Enable DoS Protection = True/checked
    4. Apply
 
+
 ## 2FA
 
 1. DSM > User menu (upper-right) > Personal > Account tab
@@ -166,9 +162,35 @@ https://www.youtube.com/watch?v=MISc_uqf0Q4
 3. Follow prompts
 
 
+## Web UI
+
+1. DSM > Control Panel > Login Portal > DSM tab
+2. Change DSM Port (HTTP) to 6049
+3. Change DSM Port (HTTPS) to 6050
+4. Automatically redirect HTTP to HTTPS = False for now
+5. Save
+
+
 ## Firewall
 
 https://www.youtube.com/watch?v=G3BJo4B1GgU&t=0s
+
+1. DSM > Control Panel > Security > Firewall
+2. Enable Firewall = True
+3. Enable Firewall Notifications = True
+4. Firewall Profile = Default > Edit Rules - dialog opens
+5. Ports > Select from List of Built-In Apps
+   1. 6049 DSM HTTP
+   2. 6050 DSM HTTPS
+   3. 20, 49200 SSH
+6. OK. OK. OK. Confirmation msg.
+
+
+## Sign In to Web UI
+
+At this point you should be able to reach the DSM web UI at the NAS's static IP address at port 6049 (http).
+
+* 192.168.1.209:6049
 
 
 ## Notifications
