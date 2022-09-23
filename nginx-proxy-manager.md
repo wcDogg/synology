@@ -141,7 +141,7 @@ See [Initial Firewall Rules](network.md/#initial-firewall-rules)
 ## Log In
 
 1. Wait a minute for container to be up
-2. Log in at the `npm_network` IP on port 81 - http://192.168.15.2:81
+2. Log in at the NAS static IP on port 8181 - http://192.168.1.209:8181
 3. Defaults 
    1. admin@example.com
    2. changeme
