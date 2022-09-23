@@ -135,17 +135,8 @@ docker/nginx-mariadb -> /var/lib/mysql
 
 ## NAS Firewall
 
-1. DSM > Security > Firewall tab
-2. Default Rules > Edit Rules
-3. Create > Custom Port > Allow the container ports below (2nd port)
+See [Initial Firewall Rules](network.md/#initial-firewall-rules)
 
-```bash
-# Local -> Container
-3306 3306 TCP     # nginx-mariadb
-4443 443 TCP      # nginx-proxy HTTPS
-8080 80 TCP       # nginx-proxy HTTP
-8181 81 TCP       # nginx-proxy web UI
-```
 
 ## Log In
 
@@ -155,7 +146,6 @@ docker/nginx-mariadb -> /var/lib/mysql
    1. admin@example.com
    2. changeme
 4. Follow prompts to change credentials
-
 
 
 ## References

@@ -61,9 +61,7 @@ These ports should be open for the majority of the setup steps. These rules assu
 ```bash
 # NAS static IP
 192.168.1.209
-
 # SSH > ip addr
-127.0.0.1/8       # lo inet
 192.168.1.209/24  # eth0 inet
 
 # DSM > Control Panel > Login Portal > DSM tab
@@ -96,6 +94,10 @@ npm_network       # Network name
 
 # Servers
 32400/TCP   # Plex Media Server
+
+# SSH > ip addr
+127.0.0.1/8       # lo inet
+192.168.1.209/24  # eth0 inet
 ```
 
 ## References
