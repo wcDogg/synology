@@ -10,7 +10,7 @@ A technical writer's notes on setting up a Synology NAS managed from Windows 11 
 * [SSH to Synology NAS](openSSH.md)
 * [NGINX Proxy Manager](nginx-proxy-manager.md)
 * [Custom Domains](custom-domain.md)
-* [SSL Certificates](ssl.md)
+* [SSL Certificates](ssl-certificates.md)
 
 
 ## Other Topics
