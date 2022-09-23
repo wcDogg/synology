@@ -128,7 +128,7 @@ Create a Synology account prior to starting.
 
 ## UPS
 
-1. Connect NAS to UPS using the provided USB cable.
+1. Connect NAS to UPS using the provided USB cable and power cord.
 2. DSM > Control Panel > Hardware & Power > UPS tab
 3. Enable UPS Support = True/checked
 4. UPS Type = USB USP
@@ -169,9 +169,9 @@ Create a Synology account prior to starting.
 5. Save
 
 
-## Firewall
+## Firewall + Router
 
-These are the temporary rules needed during configuration - [Initial Firewall Rules](network.md/#initial-firewall-rules).
+See [Network Reference](network.md) for initial configuration.
 
 
 ## Sign In to Web UI
@@ -181,9 +181,9 @@ At this point you should be able to reach the DSM web UI at the NAS's static IP 
 * http://192.168.1.209:6049
 
 
-## Notifications
+## Email and Notifications
 
-https://www.youtube.com/watch?v=wXCYEby3FJ8
+TODO: https://www.youtube.com/watch?v=wXCYEby3FJ8
 
 
 ## References
