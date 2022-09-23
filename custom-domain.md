@@ -65,9 +65,9 @@ Update your router's port forwarding to send web traffic through NGINX.
 NGINX > Dashboard > Proxy Hosts > Add Proxy Host
 
 ```bash
-proxy.wcd.black   http  192.168.1.209 8181
-dsm.wcd.black     https 192.168.1.209 6050
-plex.wcd.black    https 192.168.1.209 32400
+proxy.site.com   http  192.168.1.209 8181
+dsm.site.com     https 192.168.1.209 6050
+plex.site.com    https 192.168.1.209 32400
 
 # Cache Assets = False (setting doesn't stick)
 # Block Common Exploits = True
@@ -76,6 +76,6 @@ plex.wcd.black    https 192.168.1.209 32400
 
 All proxies should display Status = Online. Confirm access:
 
-* http://proxy.wcd.black
+* http://proxy.site.com
 * http://dsm.site.com
 * http://plex.site.com

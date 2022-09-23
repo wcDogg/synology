@@ -19,26 +19,48 @@ This step obtains an SSL certificate for NAS using the TLD.
 Confirm DSM is available at https://site.com:6050 - URL displays HTTPS and lock.
 
 
-## xx Subdomain SSL via NGINX
+## Subdomain SSL via NGINX
 
-Here are the instructions for obtaining SSL certificates for subdomains via NPM. This did not work for me  - generating the cert produces an 'Internal Error' with no on-screen explanation. 
+I obtain a separate certificate for each subdomain - vs putting all on one certificate.
 
-If it had worked, this step would make DSM available at https://dsm.wcd.black.
-
-1. NGINX > Proxy Hosts > Add Proxy Host
-2. Details
-   1. Domain Names = dsm.wcd.black
-   2. Schema = https
-   3. Forward IP = NAS static ip = 192.168.1.209
-   4. Forward Port = NAS HTTPS = 6050
-   5. Block Common Exploits = True
-3. Save. Ensure Status = Online. 
-4. Dot menu > Edit
-5. SSL
-   1. Dropdown > Request New Certificate
-   2. Force SSL = True
-   3. Email = already populated from TLD cert
-   4. Agree = True
-6. Save
+1. NGINX Dashboard > SSL Certificates > Add Certificate
+2. Domain Names = dsm.site.com
+3. Test Server Availability  = 
+4. Email for Let's Encrypt = <email>
+5. Use DNS Challenge = False
+6. Agree = True
+7. Save
 
 
+## Issue
+
+Test Server Availability gives this error:
+
+```bash
+dsm.site.com: Failed to check the reachability due to a communication error with site24x7.com
+```
+
+NPM log shows this:
+
+```bash
+sudo cat /var/log/nginx/error.log
+
+2022/09/23 11:51:55 [crit] 17531#17531: *1432 SSL_do_handshake() failed (SSL: error:141CF06C:lib(20):func(463):reason(108)) while SSL handshaking, client: 107.178.200.196, server: 0.0.0.0:443
+```
+
+
+
+
+
+Search
+
+```bash
+nginx proxy manager SSL_do_handshake failed 108
+
+```
+
+
+
+## Scratch
+
+* https://www.reddit.com/r/nginx/comments/ibevde/nginx_proxy_manager_https_not_working/

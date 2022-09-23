@@ -7,23 +7,23 @@ A running list of how URLs progress from port to domain to subdomain.
 ```bash
 # DSM
 http://192.168.1.209:6049
-http://wcd.black:6049
-https://wcd.black:6050
-http://dsm.wcd.black
+http://site.com:6049
+https://site.com:6050
+http://dsm.site.com
 
 
 # NGINX
 http://192.168.1.209:8181
-http://wcd.black:8181
-# https://wcd.black:4443
-http://proxy.wcd.black
+http://site.com:8181
+# https://site.com:4443
+http://proxy.site.com
 
 
 # Plex
 http://192.168.1.209:32400
-http://wcd.black:32400
-# https://wcd.black:32400
-http://plex.wcd.black
+http://site.com:32400
+# https://site.com:32400
+http://plex.site.com
 
 ```
 
@@ -91,7 +91,7 @@ A plex  102.19.146.13  Proxy Status = Disabled
 
 # Point TLD at NAS static IP
 # Advanced > Network Settings > DNS Server
-wcd.black -> 192.168.1.209
+site.com -> 192.168.1.209
 
 # Port forwarding during NAS config
 # Advanced > Security & Firewall > Port Forwarding
