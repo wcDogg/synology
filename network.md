@@ -32,18 +32,15 @@ These ports should be open for the majority of the setup steps. These rules assu
 # DSM > Control Panel > Terminal & SNMP > Terminal tab
 49200/TCP   # NAS SSH 
 
-# DSM > Control Panel > Terminal & SNMP > Terminal tab
-49200/TCP   # NAS SSH 
-
 # Let's Encrypt
 80/TCP    
 443/TCP
 
 # NGINX 
-3306 TCP     # nginx-mariadb
-443 TCP      # nginx-proxy HTTPS
-80 TCP       # nginx-proxy HTTP
-81 TCP       # nginx-proxy web UI
+3306 TCP   # nginx-mariadb
+4443 TCP   # nginx-proxy HTTPS
+8080 TCP   # nginx-proxy HTTP
+8181 TCP   # nginx-proxy web UI
 
 # The last / bottom rule should
 # always = Deny All
