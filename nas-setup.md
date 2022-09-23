@@ -138,8 +138,6 @@ Create a Synology account prior to starting.
 
 ## Security
 
-https://www.youtube.com/watch?v=MISc_uqf0Q4
-
 1. DSM > Control Panel > Update & Restore > DSM Update tab
    1. Click Update Settings - a dialog opens
    2. Select an update option - I selected the recommended option
@@ -173,28 +171,14 @@ https://www.youtube.com/watch?v=MISc_uqf0Q4
 
 ## Firewall
 
-These are the temporary rules needed during configuration. Ultimately, I use NGINX Proxy Manager to limit ports. 
-
-1. DSM > Control Panel > Security > Firewall
-2. Enable Firewall = True
-3. Enable Firewall Notifications = True
-4. Firewall Profile = Default > Edit Rules - dialog opens
-5. Create > Ports > Custom Port
-   1. 49200/TCP Allow (SSH)
-   2. 6049/TCP Allow (HTTP)
-   3. 6050/TCP Allow (HTTPS)
-   4. 80/TCP Allow (HTTP Let's Encrypt)
-   5. 443/TCP Allow (HTTPS)
-   6. All Deny
-6. OK. OK. OK. Confirmation msg.
-7. IMPORTANT: Always ensure the Deny All rule is last - at bottom of list.
+These are the temporary rules needed during configuration - [Initial Firewall Rules](network.md/#initial-firewall-rules).
 
 
 ## Sign In to Web UI
 
 At this point you should be able to reach the DSM web UI at the NAS's static IP address at port 6049 (http).
 
-* 192.168.1.209:6049
+* http://192.168.1.209:6049
 
 
 ## Notifications
@@ -208,3 +192,5 @@ https://www.youtube.com/watch?v=wXCYEby3FJ8
 * https://www.wundertech.net/synology-nas-initial-setup-ultimate-guide
 * https://www.youtube.com/watch?v=mStoaZjJhJE
 * https://www.youtube.com/watch?v=G3BJo4B1GgU&t=0s
+* https://www.youtube.com/watch?v=MISc_uqf0Q4
+

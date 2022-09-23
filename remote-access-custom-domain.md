@@ -4,7 +4,7 @@ How to access your NAS remotely:
 
 * Using a custom domain over HTTPS
 * Using Cloudflare to proxy (hide) your home IP address
-* Using NGINX Proxy Manager to limit open ports
+* Using Synology Proxy Server to limit open ports
 
 With no:
 
