@@ -3,14 +3,18 @@
 ```bash
 # DSM
 http://192.168.1.209:6049
+http://wcd.black:6049
+https://wcd.black:6050
 
 # NGINX
 http://192.168.1.209:8181
-
+http://wcd.black:8181
+https://wcd.black:4443
 
 # Plex
-
-
+http://192.168.1.209:32400
+http://wcd.black:32400
+https://wcd.black:32400
 ```
 
 ## Initial Firewall Rules
