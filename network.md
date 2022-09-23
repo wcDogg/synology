@@ -24,6 +24,7 @@ http://192.168.1.209:32400
 http://wcd.black:32400
 # https://wcd.black:32400
 http://plex.wcd.black
+
 ```
 
 ## Initial NAS Firewall Rules
