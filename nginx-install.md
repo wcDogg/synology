@@ -134,11 +134,6 @@ docker/nginx-mariadb -> /var/lib/mysql
 7.  Review Summary and click Done
 
 
-## NAS Firewall
-
-See [Initial Firewall Rules](network.md/#initial-firewall-rules)
-
-
 ## Log In
 
 1. Wait a minute for container to be up
