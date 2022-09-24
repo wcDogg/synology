@@ -1,6 +1,7 @@
-# NGINX Proxy Manager
+# Install NGINX Proxy Manager
 
 **IMPORTANT** This should be the first container you create as only one network can use eth0 as parent???
+
 
 ## Install Docker
 

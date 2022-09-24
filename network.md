@@ -7,24 +7,33 @@ A running list of how URLs progress from port to domain to subdomain.
 ```bash
 # DSM
 http://192.168.1.209:6049
+https://192.168.1.209:6050
+
 http://site.com:6049
 https://site.com:6050
-http://dsm.site.com
 
+http://dsm.site.com
+https://dsm.site.com
 
 # NGINX
 http://192.168.1.209:8181
-http://site.com:8181
-# https://site.com:4443
-http://proxy.site.com
+https://192.168.1.209:8181
 
+http://site.com:8181
+https://site.com:8181
+
+http://proxy.site.com
+https://proxy.site.com
 
 # Plex
 http://192.168.1.209:32400
-http://site.com:32400
-# https://site.com:32400
-http://plex.site.com
+https://192.168.1.209:32400
 
+http://site.com:32400
+https://site.com:32400
+
+http://plex.site.com
+https://plex.site.com
 ```
 
 ## Initial NAS Firewall Rules
@@ -40,15 +49,15 @@ These ports should be open for the majority of the setup steps. These rules assu
 ```bash
 # DSM > Control Panel > Login Portal > DSM tab
 # DSM > Control Panel > External Access > Advanced tab
-6049/TCP    # NAS HTTP 5000
-6050/TCP    # NAS HTTPS 5001
+6049 TCP    # NAS HTTP 5000
+6050 TCP    # NAS HTTPS 5001
 
 # DSM > Control Panel > Terminal & SNMP > Terminal tab
-49200/TCP   # NAS SSH 
+49200 TCP   # NAS SSH 
 
 # Let's Encrypt
-80/TCP    
-443/TCP
+80 TCP    
+443 TCP
 
 # NGINX 
 3306 TCP   # nginx-mariadb
@@ -63,8 +72,8 @@ These ports should be open for the majority of the setup steps. These rules assu
 ## Final NAS Firewall Rules
 
 ```bash
-# Servers
-32400/TCP   # Plex Media Server
+
+
 ```
 
 ## Cloudflare DNS Records
@@ -74,10 +83,16 @@ These ports should be open for the majority of the setup steps. These rules assu
 # 102.19.146.13 = router's public IPv4
 # Proxy Status = Disabled until SSL cert is obtained
 A @     102.19.146.13  Proxy Status = Disabled 
-A www   102.19.146.13  Proxy Status = Disabled 
-A dsm   102.19.146.13  Proxy Status = Disabled
-A proxy 102.19.146.13  Proxy Status = Disabled 
-A plex  102.19.146.13  Proxy Status = Disabled 
+A www     102.19.146.13  Proxy Status = Disabled 
+A dsm     102.19.146.13  Proxy Status = Disabled
+A proxy   102.19.146.13  Proxy Status = Disabled 
+A plex    102.19.146.13  Proxy Status = Disabled 
+
+# TODO
+A search  102.19.146.13  Proxy Status = Disabled 
+A port    102.19.146.13  Proxy Status = Disabled 
+A pass    102.19.146.13  Proxy Status = Disabled 
+A pi      102.19.146.13  Proxy Status = Disabled 
 ```
 
 ## Fios G3100 Router
@@ -89,23 +104,35 @@ A plex  102.19.146.13  Proxy Status = Disabled
 # Advanced > Network Settings > IPv4 Address Distribution
 192.168.1.209
 
+# Computer static IP
+192.168.1.208
+
 # Point TLD at NAS static IP
 # Advanced > Network Settings > DNS Server
 site.com -> 192.168.1.209
 
-# Port forwarding during NAS config
+# Port forwarding to NAS during config
 # Advanced > Security & Firewall > Port Forwarding
 80  TCP 192.168.1.209 80
 443 TCP 192.168.1.209 443
 
-# Port forwarding during NGINX config
+# Port forwarding to NGINX 
 80  TCP 192.168.1.209 8080
 443 TCP 192.168.1.209 4443
 
 # Port forwarding final rules
-80  TCP 192.168.1.209 
-443 TCP 192.168.1.209 
+80  TCP 192.168.1.209 ???
+443 TCP 192.168.1.209 ???
 ```
+
+## NGINX Proxy Hosts
+
+```bash
+proxy.site.com   http  192.168.1.209 8181
+dsm.site.com     https 192.168.1.209 6050
+plex.site.com    https 192.168.1.209 32400
+```
+
 
 ## Networks + Ports
 
@@ -149,23 +176,6 @@ npm_network       # Network name
 # SSH > ip addr
 127.0.0.1/8       # lo inet
 192.168.1.209/24  # eth0 inet
-```
-
-## Scratch
-
-```bash
-NAS
-nslookup
-> server
-
-# Default server: 192.168.1.1
-# Address: 192.168.1.1#53
-
-nslookup
-> server 192.168.1.217
-
-# Default server: 192.168.1.217
-# Address: 192.168.1.217#53
 ```
 
 

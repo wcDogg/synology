@@ -1,17 +1,8 @@
-# Remote Access using a Custom Domain
+# Cloudflare Custom Domain
 
-How to access your NAS remotely:
+The goal is to access different services on the NAS from anywhere using secure URLs like https://dsm.site.
 
-* Using a custom domain over HTTPS
-* Using Cloudflare to proxy (hide) your home IP address
-* Using Synology Proxy Server to limit open ports
-
-With no:
-
-* No VPN
-* No Synology Quick Connect 
-* No Synology hosted domain 
-* No Dynamic DNS setup hassles 
+To keep the router's IP private, we use Cloudflare as a proxy. It maps site.com to the router's IP, but a DNS lookup of site.com will show a Cloudflare IP.
 
 
 ## Register a Domain
@@ -23,7 +14,7 @@ These steps assume you are using a TLD for your NAS - site.com - and possibly su
 3. Delete exiting DNS records
 
 
-## Cloudflare
+## Cloudflare DNS Records
 
 1. Create and verify a [Cloudflare]() account
 2. Navigate to the Websites screen and click Add Site
@@ -37,6 +28,17 @@ These steps assume you are using a TLD for your NAS - site.com - and possibly su
    1. Namescheap > Domain List > Domain > scroll down to Nameservers section
 9. Back in Cloudflare, click Done and wait for propagation
 
+**IMPORTANT** Set up the records, but do not proxy your IP until you have obtained SSL certificates.
+
+
+## Cloudflare SSL/TLS
+
+Prevents 'too many redirects' error once router's IP is proxied.
+
+1. Left menu > Websites > site.com
+2. Left menu > SSL/TLS
+3. Encryption Mode = Full (strict)
+
 
 ## Test HTTP Login with Domain
 
@@ -45,37 +47,3 @@ Once the DNS records have propagated, try logging in using your domain name.
 * http://site.com:6049
 * http://site.com:8181
 
-
-## Router Port Forwarding
-
-Update your router's port forwarding to send web traffic through NGINX.
-
-```bash
-# Initial port forwarding to NAS
-80  TCP 192.168.1.209 80
-443 TCP 192.168.1.209 443
-
-# New port forwarding to NGINX
-80  TCP 192.168.1.209 8080
-443 TCP 192.168.1.209 4443
-```
-
-## NGINX Subdomains
-
-NGINX > Dashboard > Proxy Hosts > Add Proxy Host
-
-```bash
-proxy.site.com   http  192.168.1.209 8181
-dsm.site.com     https 192.168.1.209 6050
-plex.site.com    https 192.168.1.209 32400
-
-# Cache Assets = False (setting doesn't stick)
-# Block Common Exploits = True
-# Websockets Support = False
-```
-
-All proxies should display Status = Online. Confirm access:
-
-* http://proxy.site.com
-* http://dsm.site.com
-* http://plex.site.com
