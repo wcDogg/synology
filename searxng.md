@@ -19,13 +19,15 @@ cd searxng
 
 curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/searxng/docker.compose.yml -o docker-compose.yml
 
-curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/searxng/etc/settings.yml -o ./etc/settings.yml
+cd etc
 
-curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/searxng/etc/uwsgi.ini -o ./etc/uwsgi.ini
+curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/searxng/etc/settings.yml -o settings.yml
 
+curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/searxng/etc/uwsgi.ini -o uwsgi.ini
 
 # Review compose file
 # Server time zone
+cd ..
 nano docker-compose.yml
 
 # Review settings file
