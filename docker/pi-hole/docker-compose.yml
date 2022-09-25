@@ -1,0 +1,42 @@
+version: "3"
+
+networks:
+  private_network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.2.0.0/24
+
+services:
+  unbound:
+    image: "mvance/unbound:latest"
+    container_name: unbound
+    hostname: "unbound"
+    restart: unless-stopped
+    volumes:
+      - /volume1/docker/pi-hole/unbound:/opt/unbound/etc/unbound
+    networks:
+      private_network:
+        ipv4_address: 10.2.0.200
+
+  pi-hole:
+    depends_on: [unbound]
+    image: pihole/pihole:latest
+    container_name: pi-hole
+    hostname: pi-hole
+    restart: unless-stopped
+    dns:
+      - 127.0.0.1
+      - 10.2.0.200 # 💡 Points to unbound
+    environment:
+      TZ: "America/New_York"    # ⚠️ Server time zone
+      WEBPASSWORD: 'changeme'   # 💡 A temporary PW
+      ServerIP: 10.2.0.100      # 💡 Internal IP of pihole
+      DNS1: 10.2.0.200          # 💡 Unbound IP
+      DNS2: 10.2.0.200          # 💡 Twice else defaults to Google
+    volumes:
+      - /volume1/docker/pi-hole/etc-pihole:/etc/pihole
+      - /volume1/docker/pi-hole/etc-dnsmasq.d:/etc/dnsmasq.d
+    networks:
+      private_network:
+        ipv4_address: 10.2.0.100

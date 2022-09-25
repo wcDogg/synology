@@ -8,5 +8,7 @@ services:
     restart: unless-stopped
     ports:
      - "8484:8080"
+    environment:
+      - TZ="America/New_York" # ⚠️ Server time zone
     volumes:
       - /volume1/docker/searxng:/etc/searxng

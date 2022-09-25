@@ -138,7 +138,11 @@ Create a Synology account prior to starting.
 
 ## Security
 
-1. DSM > Control Panel > Update & Restore > DSM Update tab
+1. DSM > Control Panel > Regional Options
+   1. Time tab - set 
+   2. Language tab - set
+   3. NTP Service tab - not enabled
+2. DSM > Control Panel > Update & Restore > DSM Update tab
    1. Click Update Settings - a dialog opens
    2. Select an update option - I selected the recommended option
    3. Set a Check Schedule
@@ -155,7 +159,7 @@ Create a Synology account prior to starting.
 
 ## 2FA
 
-I don't recommend QR code 2FA - reference only.
+I don't recommend QR code 2FA - reference only. If you do use 2FA, be sure to set the NAS time to match the time used on your devices.  
 
 1. DSM > User menu (upper-right) > Personal > Account tab
 2. Sign-in Method = 2 Factor Authentication
@@ -170,6 +174,12 @@ I don't recommend QR code 2FA - reference only.
 4. Automatically redirect HTTP to HTTPS = True
 5. Save
 6. Wait a minute for server to restart
+
+
+## Date, Time, Timezone
+
+1. DSM > Control Panel > Regional Options
+2. 
 
 
 ## Firewall + Router

@@ -16,58 +16,15 @@ mkdir -p nginx-proxy/data
 mkdir -p nginx-proxy/lets-encrypt
 mkdir -p nginx-mariadb
 
-# Create compose file - paste from below
+# Create compose file
 cd nginx-proxy
-nano docker-compose.yml
+# TODO curl here
 
 # Docker up
 docker-compose up -d
 
 # Exit sudo -i
 exit
-```
-
-## docker-compose.yml
-
-```yml
-version: "2"
-
-services:
-  nginx-proxy:
-    image: 'jc21/nginx-proxy-manager:latest'
-    container_name: nginx-proxy
-    hostname: nginx-proxy
-    restart: unless-stopped
-    ports:
-      - '8080:80'   # ⚠️ HTTP
-      - '4443:443'  # ⚠️ HTTPS 
-      - '8181:81'   # ⚠️ Web UI
-    environment:
-      DB_MYSQL_HOST: "nginx-mariadb" 
-      DB_MYSQL_PORT: 3306         # ⚠️ DB internal port
-      DB_MYSQL_NAME: "nginx-db"
-      DB_MYSQL_USER: "npm"
-      DB_MYSQL_PASSWORD: "npm" 
-      # Uncomment this if IPv6 is not enabled on your host
-      # DISABLE_IPV6: 'true'
-    volumes:
-      - /volume1/docker/nginx-proxy/data:/data
-      - /volume1/docker/nginx-proxy/lets-encrypt:/etc/letsencrypt
-    depends_on:
-      - nginx-mariadb
-
-  nginx-mariadb:
-    image: 'jc21/mariadb-aria:latest'
-    container_name: nginx-mariadb
-    hostname: nginx-mariadb
-    restart: unless-stopped
-    environment:
-      MYSQL_DATABASE: 'nginx-db'  # ⚠️ Match DB_DB_MYSQL_NAME
-      MYSQL_USER: 'npm'           # ⚠️ Match DB_MYSQL_USER
-      MYSQL_PASSWORD: 'npm'       # ⚠️ Match DB_MYSQL_PASSWORD
-      MYSQL_ROOT_PASSWORD: 'npm'  # ⚠️ Set strong PW here
-    volumes:
-      - /volume1/docker/nginx-mariadb:/var/lib/mysql
 ```
 
 ## Log In
