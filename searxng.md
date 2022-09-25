@@ -21,14 +21,13 @@ curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/searxng/do
 
 curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/searxng/settings.yml -o settings.yml
 
-
 # Review compose file
 # Server time zone
 cd ..
 nano docker-compose.yml
 
 # Review settings file
-nano ./etc/settings.yml
+nano settings.yml
 
 # Docker up
 docker-compose up -d
