@@ -1,5 +1,9 @@
 version: '2'
 
+networks:
+  default:
+    name: nas_network
+
 services:
   portainer:
     image: portainer/portainer-ce:latest
@@ -7,8 +11,12 @@ services:
     hostname: portainer
     restart: unless-stopped
     ports:
-      # - 8000:8000   # 💡 Edge agents
-      - 9443:9443     # ⚠️ Web UI
+      - 7680:8000   # Edge agents
+      - 7643:9443   # Web UI
     volumes:
       - /volume1/docker/portainer-ce:/data
       - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      default:
+        ipv4_address: 172.77.0.6
+

@@ -147,6 +147,19 @@ plex.site.com     https 192.168.1.209 32400
 ## Networks + Ports
 
 ```bash
+# Docker nas_network
+172.29.7.0/24     # Subnet
+172.29.7.1        # Gateway 
+172.29.7.2        # NGINX Proxy Manager
+172.29.7.3        # NGINX MariaDB
+172.29.7.4        # Pi-hole server
+172.29.7.5        # Unbound server
+172.29.7.6        # Portainer
+  7680:8000 TCP   # Edge agents
+  7643:9443 TCP   # Web UI
+172.29.7.7        # SearXNG
+  7780:8080 TCP   # Web UI
+
 # Ports are sometimes referenced as local:container
 # If you need to change a port, it's the local (first) port
 

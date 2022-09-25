@@ -12,25 +12,29 @@ password
 cd /volume1/docker
 
 # Create volumes
-mkdir searxng
+mkdir -p searxng/etc
 
-# Get compose file
+# Get files
 cd searxng
 
 curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/searxng/docker.compose.yml -o docker-compose.yml
 
+
+
 # Review compose file
+# Server time zone
 nano docker-compose.yml
 
 # Docker up
 docker-compose up -d
 ```
 
-## Test
+## Access
 
-1. http://
+1. http://192.168.1.209:7780
    
 
 ## References
 
-* GitHub: [SearXNG](https://github.com/searxng)
+* [SearXNG GitHub](https://github.com/searxng)
+

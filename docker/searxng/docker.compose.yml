@@ -1,5 +1,9 @@
 version: '2'
 
+networks:
+  default:
+    name: nas_network
+
 services:
   searxng:
     image: searxng/searxng:latest
@@ -7,8 +11,11 @@ services:
     hostname: searxng  
     restart: unless-stopped
     ports:
-     - "8484:8080"
+      - 7780:8080   # Web UI
     environment:
-      - TZ="America/New_York" # ⚠️ Server time zone
+      - TZ="America/New_York"   # ⚠️ Server time zone
     volumes:
       - /volume1/docker/searxng:/etc/searxng
+    networks:
+      default:
+        ipv4_address: 172.29.7.7

@@ -5,8 +5,8 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: 172.29.0.0/24
-        - gateway: 172.29.0.1
+        - subnet: 172.77.0.0/24
+        - gateway: 172.77.0.1
 
 services:
   unbound:
@@ -21,7 +21,7 @@ services:
       - "8753:53/udp"   # DNS traffic
     networks:
       default:
-        ipv4_address: 172.29.0.3
+        ipv4_address: 172.77.0.3
 
   pi-hole:
     depends_on: [unbound]
@@ -36,18 +36,18 @@ services:
       - "8743:443/tcp"  # Web UI
     dns:
       - 127.0.0.1
-      - 172.29.0.3  # Unbound IP
+      - 172.77.0.3  # Unbound IP
     environment:
       TZ: "America/New_York"   # ⚠️ Server time zone
       WEBPASSWORD: 'changeme'  # ⚠️ A temporary PW
-      ServerIP: 172.29.2       # Pi-hole IP
-      DNS1: 172.29.0.3         # Unbound IP
-      DNS2: 172.29.0.3         # Twice else defaults to Google
+      ServerIP: 172.77.2       # Pi-hole IP
+      DNS1: 172.77.0.3         # Unbound IP
+      DNS2: 172.77.0.3         # Twice else defaults to Google
     volumes:
       - /volume1/docker/pi-hole/etc-pihole:/etc/pihole
       - /volume1/docker/pi-hole/etc-dnsmasq.d:/etc/dnsmasq.d
     networks:
       default:
-        ipv4_address: 172.29.0.2
+        ipv4_address: 172.77.0.2
 
 
