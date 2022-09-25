@@ -59,6 +59,14 @@ Create a Synology account prior to starting.
 2. Set name, description, permissions.
 
 
+## Storage Analyzer
+
+1. DSM > Control Panel > Shared Folder. Create a new directory to store reports.
+1. DSM > Package Center > Install Storage Analyzer.
+2. Open and follow prompts to configure.
+3. See video for step-by-step: https://youtu.be/MyQy4Wj679A?t=534
+
+
 ## Home Services
 
 1. Control Panel > User & Group > Advanced tab 
@@ -75,7 +83,7 @@ Create a Synology account prior to starting.
 
 1. DSM > Storage Manager
 2. In the left panel, select a storage pool - Storage Pool 1.
-3. Select the Schedule Data Scrubbing tab - a dialog opens.
+3. Click Schedule Data Scrubbing - a dialog opens.
 4. Enable data scrubbing schedule = True/checked
 5. The correct pool should already be selected.
 6. Frequency = Repeat Monthly
@@ -89,18 +97,17 @@ Create a Synology account prior to starting.
    1. In the left panel, select a volume - Volume 1
    2. On the main screen, in the Volume 1 section, click the *** menu > Settings
    3. Record File Access Time Frequency = Never
-   4. Save
 2. DSM > Package Center
    1. Install Snapshot Replication and open app
    2. In the left panel, select Snapshots
-   3. Click the Settings button
-   4. Schedule tab
-      1. Enable Snapshot Schedule = True/checked
-      2. Set a schedule that's appropriate
-   5. Retention tab
-      1. Enable Retention Policy = True/checked
-      2. Keep all snapshots for = 7 days
-   6. OK
+   3. A list of directories is displayed. For each:
+      1. Click the Settings button
+      2. Schedule tab
+         1. Enable Snapshot Schedule = True/checked
+         2. Set a schedule that's appropriate
+      3. Retention tab
+         1. Enable Retention Policy = True/checked
+         2. Keep all snapshots for = 7 days
 
 
 ## Recycle Bin
@@ -117,13 +124,6 @@ Create a Synology account prior to starting.
    1. Empty all Recycle Bins = True
    2. Number of days to retain deleted files = 7
 6. OK
-
-
-## Storage Analyzer
-
-1. DSM > Control Panel > Shared Folder. Create a new directory to store reports.
-1. DSM > Package Center > Install Storage Analyzer.
-2. See video for step-by-step: https://youtu.be/MyQy4Wj679A?t=534
 
 
 ## UPS
@@ -155,6 +155,8 @@ Create a Synology account prior to starting.
 
 ## 2FA
 
+I don't recommend QR code 2FA - reference only.
+
 1. DSM > User menu (upper-right) > Personal > Account tab
 2. Sign-in Method = 2 Factor Authentication
 3. Follow prompts
@@ -167,6 +169,7 @@ Create a Synology account prior to starting.
 3. Change DSM Port (HTTPS) to 6050
 4. Automatically redirect HTTP to HTTPS = True
 5. Save
+6. Wait a minute for server to restart
 
 
 ## Firewall + Router

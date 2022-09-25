@@ -1,5 +1,6 @@
 # Ignore sensitive files
 .env*
+ssl-certs
 
 # Ignore VS Code
 .vscode

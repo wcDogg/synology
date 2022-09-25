@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  searxng:
+    image: searxng/searxng:latest
+    container_name: searxng
+    hostname: searxng  
+    restart: unless-stopped
+    ports:
+     - "8484:8080"
+    volumes:
+      - /volume1/docker/searxng:/etc/searxng

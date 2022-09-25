@@ -26,9 +26,13 @@ This step obtains an SSL certificate for NAS using the TLD.
 5. Done
 6. Once certificate has generated, highlight and click Action > Edit
    1. Set as Default Certificate = True
+7. Highlight cert again and click Settings
+   1. Switch all services to use new cert
 
 Confirm DSM is available at https://site.com:6050 - URL displays HTTPS and lock.
 
+
+## STOP HERE
 
 ## Create SSL Certificates and Export
 

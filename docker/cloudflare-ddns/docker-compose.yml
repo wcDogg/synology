@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  cloudflare-ddns:
+    image: oznu/cloudflare-ddns:latest
+    restart: always
+    environment:
+      - API_KEY=xxxxxxx
+      - ZONE=site.com
+      - PROXIED=false
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1

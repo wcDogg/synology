@@ -4,17 +4,24 @@ Most home routers are assigned a dynamic IP address - meaning it can change at a
 
 ## Cloudflare API Token
 
-1. Log in to Cloudflare
-2. User menu > My Profile
-3. Left menu > API tokens
-4. Create Token using the Read All Resources template
-5. Limit Zone Resources to site.com
-6. Continue to Summary. Create Token.
-7. Copy token to a password manager
-8. Use the on-screen command to test (remove \s)
+1. User menu > My Profile
+2. Left menu > API tokens
+3. Create Token > Select the Zone DNS template
+4. Token Name = site-com-ddns
+5. Permissions = 
+   1. Zone - DNS - Edit
+   2. Zone - Zone - Read
+   3. Zone - Zone Settings - Read
+6. Zone Resources = Include - All Zones
+7. Continue to Summary. Create Token.
+8. Copy token to a password manager
+9. Use the on-screen command to test
 
+```bash
+curl -X GET "https://api.cloudflare.com/client/v4/user/tokens/verify" -H "Authorization: Bearer cfAPItokenHERE" -H "Content-Type:application/json"
+```
 
-
+## Portainer
 
 ## References
 

@@ -15,6 +15,10 @@ https://site.com:6050
 http://dsm.site.com
 https://dsm.site.com
 
+# Portainer
+# http://192.168.1.209:9443
+https://192.168.1.209:9443
+
 # NGINX
 http://192.168.1.209:8181
 https://192.168.1.209:8181
@@ -24,6 +28,10 @@ https://site.com:8181
 
 http://proxy.site.com
 https://proxy.site.com
+
+
+# SearXNG
+http://192.168.1.209:8484
 
 # Plex
 http://192.168.1.209:32400
@@ -47,33 +55,27 @@ These ports should be open for the majority of the setup steps. These rules assu
 5. Create > Ports > Custom Port
 
 ```bash
-# DSM > Control Panel > Login Portal > DSM tab
-# DSM > Control Panel > External Access > Advanced tab
 6049 TCP    # NAS HTTP 5000
 6050 TCP    # NAS HTTPS 5001
+49200 TCP   # NAS SSH 22
 
-# DSM > Control Panel > Terminal & SNMP > Terminal tab
-49200 TCP   # NAS SSH 
+9443 TCP    # Portainer web UI
+8484 TCP    # SearXNG web UI
+32400 TCP   # Plex web UI
 
-# Let's Encrypt
-80 TCP    
-443 TCP
+80 TCP      # Let's Encrypt   
+443 TCP     # Let's Encrypt 
 
-# NGINX 
-3306 TCP   # nginx-mariadb
-4443 TCP   # nginx-proxy HTTPS
-8080 TCP   # nginx-proxy HTTP
-8181 TCP   # nginx-proxy web UI
-
-# The last / bottom rule should
-# always = Deny All
+4443 TCP    # nginx-proxy HTTPS
+8080 TCP    # nginx-proxy HTTP
+8181 TCP    # nginx-proxy web UI
 ```
 
 ## Final NAS Firewall Rules
 
 ```bash
-
-
+# The last / bottom rule should
+# always = Deny All
 ```
 
 ## Cloudflare DNS Records
@@ -82,17 +84,15 @@ These ports should be open for the majority of the setup steps. These rules assu
 # DNS records for site.com
 # 102.19.146.13 = router's public IPv4
 # Proxy Status = Disabled until SSL cert is obtained
-A @     102.19.146.13  Proxy Status = Disabled 
-A www     102.19.146.13  Proxy Status = Disabled 
-A dsm     102.19.146.13  Proxy Status = Disabled
-A proxy   102.19.146.13  Proxy Status = Disabled 
-A plex    102.19.146.13  Proxy Status = Disabled 
-
-# TODO
-A search  102.19.146.13  Proxy Status = Disabled 
-A port    102.19.146.13  Proxy Status = Disabled 
-A pass    102.19.146.13  Proxy Status = Disabled 
-A pi      102.19.146.13  Proxy Status = Disabled 
+A @           102.19.146.13
+CNAME www     @
+CNAME dsm     @
+CNAME proxy   @ 
+CNAME plex    @
+CNAME search  @
+CNAME port    @
+CNAME pi      @
+CNAME vault   @
 ```
 
 ## Fios G3100 Router
@@ -121,61 +121,59 @@ site.com -> 192.168.1.209
 443 TCP 192.168.1.209 4443
 
 # Port forwarding final rules
-80  TCP 192.168.1.209 ???
-443 TCP 192.168.1.209 ???
+# 80  TCP 192.168.1.209 ???
+# 443 TCP 192.168.1.209 ???
 ```
 
 ## NGINX Proxy Hosts
 
 ```bash
-proxy.site.com   http  192.168.1.209 8181
-dsm.site.com     https 192.168.1.209 6050
-plex.site.com    https 192.168.1.209 32400
+proxy.site.com    http  192.168.1.209 8181
+dsm.site.com      https 192.168.1.209 6050
+port.site.com     https 192.168.1.209 9443
+plex.site.com     https 192.168.1.209 32400
+
 ```
 
 
 ## Networks + Ports
 
 ```bash
+# Ports are sometimes referenced as local:container
+# If you need to change a port, it's the local (first) port
+
 # NAS static IP
 192.168.1.209
-# SSH > ip addr
-192.168.1.209/24  # eth0 inet
-
-# DSM > Control Panel > Login Portal > DSM tab
-6049/TCP    # NAS HTTP
-6050/TCP    # NAS HTTPS, Synology Photos
-
-# DSM > Control Panel > Terminal & SNMP > Terminal tab
-49200/TCP   # NAS SSH 
-
-# Let's Encrypt
-80/TCP    
-443/TCP
-
-# NGINX 
-npm_bridge        # Network name
-192.168.14.0/24   # Subnet
-192.168.14.1      # Gateway
-192.168.14.2/32   # IP range (single IP)
-
-npm_network       # Network name
-192.168.15.0/24   # Subnet
-192.168.15.1      # Gateway
-192.168.15.2/32   # IP range (single IP)
-
-# Local (editable) -> Container
-3306 3306 TCP     # nginx-mariadb
-4443 443 TCP      # nginx-proxy HTTPS
-8080 80 TCP       # nginx-proxy HTTP
-8181 81 TCP       # nginx-proxy web UI
-
-# Servers
-32400/TCP   # Plex Media Server
 
 # SSH > ip addr
 127.0.0.1/8       # lo inet
 192.168.1.209/24  # eth0 inet
+
+# DSM > Control Panel > Login Portal > DSM tab
+6049 TCP    # NAS HTTP 5000
+6050 TCP    # NAS HTTPS 5001
+
+# DSM > Control Panel > Terminal & SNMP > Terminal tab
+49200 TCP   # NAS SSH 
+
+# Let's Encrypt
+80 TCP    
+443 TCP
+
+# Portainer
+9443:9443 TCP     # Web UI
+8000              # Internal exposed tunnel
+9001              # Internal Portainer agents listen
+
+# NGINX 
+3306:3306 TCP     # Internal nginx-mariadb
+4443:443 TCP      # nginx-proxy HTTPS
+8080:80 TCP       # nginx-proxy HTTP
+8181:81 TCP       # nginx-proxy web UI
+
+# Servers
+32400 TCP         # Plex Media Server web UI
+8484:8080 TCP     # SearXNG web UI
 ```
 
 
