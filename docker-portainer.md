@@ -49,39 +49,21 @@ cd /volume1/docker
 # Create volume
 mkdir portainer-ce
 
-# Create compose file - paste from below
+# Get compose file
 cd portainer-ce
+
+curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/portainer/docker-compose.yml -o docker-compose.yml
+
+# Review compose file
 nano docker-compose.yml
 
 # Docker up
 docker-compose up -d
-
-# Exit sudo -i
-exit
-```
-
-## docker-compose.yml
-
-```yml
-version: '2'
-
-services:
-  portainer:
-    image: portainer/portainer-ce:latest
-    container_name: portainer
-    hostname: portainer
-    restart: unless-stopped
-    ports:
-      # - 8000:8000   # 💡 Edge agents
-      - 9443:9443     # ⚠️ Web UI
-    volumes:
-      - /volume1/docker/portainer-ce:/data
-      - /var/run/docker.sock:/var/run/docker.sock
 ```
 
 ## Sign In
 
-Portainer generates a self-signed SSL so you can sign in at an HTTP URL.
+Portainer generates a self-signed SSL so you can sign in at an HTTP URL. Weirdly, it will still be insecure?
 
 1. https://192.168.1.209:9443
 2. Follow screen to create a new user

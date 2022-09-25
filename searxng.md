@@ -16,13 +16,14 @@ mkdir searxng
 
 # Get compose file
 cd searxng
-# TODO curl here
+
+curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/searxng/docker.compose.yml -o docker-compose.yml
+
+# Review compose file
+nano docker-compose.yml
 
 # Docker up
 docker-compose up -d
-
-# Exit sudo -i
-exit
 ```
 
 ## Test

@@ -18,17 +18,24 @@ mkdir -p pi-hole/etc-dnsmasq.d
 
 # Get compose file
 cd pi-hole
-# TODO curl here
+
+curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/pi-hole/docker-compose.yml -o docker-compose.yml
 
 # Get conf file
 cd unbound
-# TODO curl here
+
+curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/pi-hole/unbound/unbound.conf -o unbound.conf
+
+# Review compose file
+cd ..
+nano docker-compose.yml
 
 # Docker up
-cd ..
 docker-compose up -d
-
-# Exit sudo -i
-exit
 ```
+
+## Sign In
+
+1. http://10.2.0.100/admin
+2. Temp PW = changeme
 

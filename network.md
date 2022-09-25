@@ -30,6 +30,9 @@ http://proxy.site.com
 https://proxy.site.com
 
 
+# Pi-hole
+http://10.2.0.100/admin
+
 # SearXNG
 http://192.168.1.209:8484
 
@@ -174,6 +177,11 @@ plex.site.com     https 192.168.1.209 32400
 # Servers
 32400 TCP         # Plex Media Server web UI
 8484:8080 TCP     # SearXNG web UI
+
+# Pi-hole
+10.2.0.0/24       # Subnet
+10.2.0.100        # Pi-hole server
+10.2.0.200        # Unbound server
 ```
 
 

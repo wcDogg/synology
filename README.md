@@ -1,7 +1,6 @@
-# Synology DS920+ with DSM 7
+# Synology DS920+ NAS with DSM 7
 
-A technical writer's notes on setting up a Synology NAS managed from Windows 11 - which can sometimes matter. 
-
+A technical writer's notes on setting up a Synology NAS for secure access from anywhere.
 
 ## First Steps
 
@@ -12,6 +11,7 @@ A technical writer's notes on setting up a Synology NAS managed from Windows 11 
 * [Docker and Portainer](docker-portainer.md)
 * [Install NGINX Proxy Manager](nginx-install.md)
 * [Install SearXNG](searxng.md)
+* [Install Pi-hole and Unbound](pi-hole.md)
 
 WIP
 

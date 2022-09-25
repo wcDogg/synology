@@ -16,20 +16,21 @@ mkdir -p nginx-proxy/data
 mkdir -p nginx-proxy/lets-encrypt
 mkdir -p nginx-mariadb
 
-# Create compose file
+# Get compose file
 cd nginx-proxy
-# TODO curl here
+
+curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/nginx-proxy/docker-compose.yml -o docker-compose.yml
+
+# Review compose file
+nano docker-compose.yml
 
 # Docker up
 docker-compose up -d
-
-# Exit sudo -i
-exit
 ```
 
-## Log In
+## Sign In
 
-1. Log in at the NAS static IP on port 8181 - http://192.168.1.209:8181
+1. Sign in at the NAS static IP on port 8181 - http://192.168.1.209:8181
 2. Defaults 
    1. admin@example.com
    2. changeme
