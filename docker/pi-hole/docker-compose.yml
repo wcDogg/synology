@@ -1,11 +1,12 @@
-version: "3"
+version: "2"
 
 networks:
-  private_network:
+  default:
     ipam:
       driver: default
       config:
-        - subnet: 10.2.0.0/24
+        - subnet: 172.29.0.0/24
+        - gateway: 172.29.0.1
 
 services:
   unbound:
@@ -15,9 +16,12 @@ services:
     restart: unless-stopped
     volumes:
       - /volume1/docker/pi-hole/unbound:/opt/unbound/etc/unbound
+    ports:
+      - "8753:53/tcp"   # DNS traffic
+      - "8753:53/udp"   # DNS traffic
     networks:
-      private_network:
-        ipv4_address: 10.2.0.200
+      default:
+        ipv4_address: 172.29.0.3
 
   pi-hole:
     depends_on: [unbound]
@@ -25,18 +29,25 @@ services:
     container_name: pi-hole
     hostname: pi-hole
     restart: unless-stopped
+    ports:
+      - "8753:53/tcp"   # DNS traffic
+      - "8753:53/udp"   # DNS traffic
+      - "8780:80/tcp"   # Web UI
+      - "8743:443/tcp"  # Web UI
     dns:
       - 127.0.0.1
-      - 10.2.0.200 # 💡 Points to unbound
+      - 172.29.0.3  # Unbound IP
     environment:
-      TZ: "America/New_York"    # ⚠️ Server time zone
-      WEBPASSWORD: 'changeme'   # 💡 A temporary PW
-      ServerIP: 10.2.0.100      # 💡 Internal IP of pihole
-      DNS1: 10.2.0.200          # 💡 Unbound IP
-      DNS2: 10.2.0.200          # 💡 Twice else defaults to Google
+      TZ: "America/New_York"   # ⚠️ Server time zone
+      WEBPASSWORD: 'changeme'  # ⚠️ A temporary PW
+      ServerIP: 172.29.2       # Pi-hole IP
+      DNS1: 172.29.0.3         # Unbound IP
+      DNS2: 172.29.0.3         # Twice else defaults to Google
     volumes:
       - /volume1/docker/pi-hole/etc-pihole:/etc/pihole
       - /volume1/docker/pi-hole/etc-dnsmasq.d:/etc/dnsmasq.d
     networks:
-      private_network:
-        ipv4_address: 10.2.0.100
+      default:
+        ipv4_address: 172.29.0.2
+
+

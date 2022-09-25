@@ -72,6 +72,11 @@ These ports should be open for the majority of the setup steps. These rules assu
 4443 TCP    # nginx-proxy HTTPS
 8080 TCP    # nginx-proxy HTTP
 8181 TCP    # nginx-proxy web UI
+
+8753 UDP    # Pi-hole DNS traffic
+8753 TCP    # Pi-hole DNS traffic
+8780 TCP    # Pi-hole Web UI
+8743 TCP    # Pi-hole Web UI
 ```
 
 ## Final NAS Firewall Rules
@@ -179,9 +184,15 @@ plex.site.com     https 192.168.1.209 32400
 8484:8080 TCP     # SearXNG web UI
 
 # Pi-hole
-10.2.0.0/24       # Subnet
-10.2.0.100        # Pi-hole server
-10.2.0.200        # Unbound server
+172.29.0.0/24     # Subnet
+172.29.0.1        # Gateway    
+172.29.0.2        # Pi-hole server
+172.29.0.3        # Unbound server
+
+8753:53 UDP       # DNS traffic
+8753:53 TCP       # DNS traffic
+8780:80 TCP       # Web UI
+8743:443 TCP      # Web UI
 ```
 
 
