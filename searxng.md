@@ -19,7 +19,7 @@ cd searxng
 
 curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/searxng/docker.compose.yml -o docker-compose.yml
 
-curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/searxng/etc/settings.yml -o settings.yml
+curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/searxng/settings.yml -o settings.yml
 
 
 # Review compose file
