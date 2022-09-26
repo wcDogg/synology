@@ -14,29 +14,22 @@ password
 cd /volume1/docker
 
 # Create volumes
-mkdir -p searxng/etc
+mkdir searxng
 
 # Get compose file
 cd searxng
 
 curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/searxng/docker.compose.yml -o docker-compose.yml
 
+curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/searxng/settings.yml -o settings.yml
+
 # Review compose file
 # Server time zone
 nano docker-compose.yml
 
-# Get settings files
-cd etc
-
-curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/searxng/etc/default_settings.yml -o default_settings.yml
-
-curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/searxng/etc/settings.yml -o settings.yml
-
-
 # Review settings file
 # Most common changes are at top
 nano settings.yml
-
 
 # Docker up
 docker-compose up -d
