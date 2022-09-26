@@ -42,7 +42,6 @@ docker-compose up -d
 
 ## TODO
 
-* How to use custom settings.yml
 * Fix `ERROR:searx.shared: uwsgi.ini configuration error, add this line to your uwsgi.ini`
 
 
