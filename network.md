@@ -150,14 +150,19 @@ search.site.com   https 192.168.1.209 7780
 172.29.7.0/24     # Subnet
 172.29.7.1        # Gateway 
 172.29.7.2        # NGINX Proxy Manager
+  7233:3306 TCP     # Internal nginx-mariadb
+  7243:443 TCP      # nginx-proxy HTTPS
+  7280:80 TCP       # nginx-proxy HTTP
+  7281:81 TCP       # nginx-proxy web UI
 172.29.7.3        # NGINX MariaDB
+
 172.29.7.4        # Pi-hole server
 172.29.7.5        # Unbound server
 172.29.7.6        # Portainer
-  7680:8000 TCP   # Portainer edge agents
-  7643:9443 TCP   # Portainer web UI
+  7680:8000 TCP     # Portainer edge agents
+  7643:9443 TCP     # Portainer web UI
 172.29.7.7        # SearXNG
-  7780:8080 TCP   # SearXNG web UI
+  7780:8080 TCP     # SearXNG web UI
 # 172.29.7.8      # SearXNG redis
 
 # NAS port : Container port
@@ -191,16 +196,9 @@ search.site.com   https 192.168.1.209 7780
 80 TCP    
 443 TCP
 
-# Portainer
-9443:9443 TCP     # Web UI
-8000              # Internal exposed tunnel
-9001              # Internal Portainer agents listen
 
 # NGINX 
-3306:3306 TCP     # Internal nginx-mariadb
-4443:443 TCP      # nginx-proxy HTTPS
-8080:80 TCP       # nginx-proxy HTTP
-8181:81 TCP       # nginx-proxy web UI
+
 
 # Servers
 32400 TCP         # Plex Media Server web UI

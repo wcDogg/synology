@@ -1,5 +1,9 @@
 version: "2"
 
+networks:
+  default:
+    name: nas_network
+
 services:
   nginx-proxy:
     image: 'jc21/nginx-proxy-manager:latest'
@@ -7,12 +11,12 @@ services:
     hostname: nginx-proxy
     restart: unless-stopped
     ports:
-      - '8080:80'   # ⚠️ HTTP
-      - '4443:443'  # ⚠️ HTTPS 
-      - '8181:81'   # ⚠️ Web UI
+      - '7280:80'   # HTTP
+      - '7243:443'  # HTTPS 
+      - '7281:81'   # Web UI
     environment:
       DB_MYSQL_HOST: "nginx-mariadb" 
-      DB_MYSQL_PORT: 3306         # ⚠️ DB internal port
+      DB_MYSQL_PORT: 7233  # DB internal port
       DB_MYSQL_NAME: "nginx-db"
       DB_MYSQL_USER: "npm"
       DB_MYSQL_PASSWORD: "npm" 
@@ -23,6 +27,9 @@ services:
       - /volume1/docker/nginx-proxy/lets-encrypt:/etc/letsencrypt
     depends_on:
       - nginx-mariadb
+    networks:
+      default:
+        ipv4_address: 172.29.7.2
 
   nginx-mariadb:
     image: 'jc21/mariadb-aria:latest'
@@ -30,10 +37,12 @@ services:
     hostname: nginx-mariadb
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: 'nginx-db'  # ⚠️ Match DB_DB_MYSQL_NAME
+      MYSQL_DATABASE: 'nginx-db'  
       MYSQL_USER: 'npm'           # ⚠️ Match DB_MYSQL_USER
       MYSQL_PASSWORD: 'npm'       # ⚠️ Match DB_MYSQL_PASSWORD
       MYSQL_ROOT_PASSWORD: 'npm'  # ⚠️ Set strong PW here
     volumes:
       - /volume1/docker/nginx-mariadb:/var/lib/mysql
-    
+    networks:
+      default:
+        ipv4_address: 172.29.7.3
