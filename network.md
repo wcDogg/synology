@@ -158,7 +158,7 @@ search.site.com   https 192.168.1.209 7780
   7643:9443 TCP   # Portainer web UI
 172.29.7.7        # SearXNG
   7780:8080 TCP   # SearXNG web UI
-172.29.7.8        # SearXNG redis
+# 172.29.7.8      # SearXNG redis
 
 # NAS port : Container port
 # For NAS ports

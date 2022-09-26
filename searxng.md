@@ -1,5 +1,7 @@
 # Install SearXNG
 
+* This container does not use Caddy - we're using NPM for SSL
+* This container does not use redis - it causes the SearXNG container's CPU usage to spike into the red every few seconds.
 
 ## Install
 
@@ -12,23 +14,24 @@ password
 cd /volume1/docker
 
 # Create volumes
-mkdir searxng
+mkdir -p searxng/etc
 
-# Get files
+# Get compose file
 cd searxng
 
 curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/searxng/docker.compose.yml -o docker-compose.yml
 
-curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/searxng/settings.yml -o settings.yml
-
 # Review compose file
 # Server time zone
-cd ..
 nano docker-compose.yml
+
+# TODO
+# Custom settings
+# curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/searxng/custom-settings.yml -o custom-settings.yml
 
 # Review settings file
 # Most common changes are at top
-nano settings.yml
+# nano settings.yml
 
 # Docker up
 docker-compose up -d
@@ -39,8 +42,10 @@ docker-compose up -d
 * http://192.168.1.209:7780
    
 
+## TODO
 
-
+* How to use custom settings.yml
+* Fix `ERROR:searx.shared: uwsgi.ini configuration error, add this line to your uwsgi.ini`
 
 
 ## References

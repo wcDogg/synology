@@ -66,34 +66,7 @@ services:
 
 ## Stopping and Starting Containers
 
-Here's how to safely edit a container using SearXNG as an example.
-
-```bash
-# Escalate
-sudo -i
-
-# Look up container name
-docker container ls
-
-# Stop container
-docker stop searxng
-
-# Remove container
-docker rm --force searxng
-
-# !!! IMPORTANT !!!
-# Never use 'docker-compose down'
-# to destroy a container - it also destroys nas_network
-
-# Go where the files are
-cd /volume1/docker/searxng
-
-# Edit a file
-nano settings.yml
-
-# Up
-docker-compose up -d
-```
+TODO
 
 
 ## Composerize
