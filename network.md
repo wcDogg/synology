@@ -154,12 +154,16 @@ search.site.com   https 192.168.1.209 7780
 172.29.7.4        # Pi-hole server
 172.29.7.5        # Unbound server
 172.29.7.6        # Portainer
-  7680:8000 TCP   # Portainer dge agents
+  7680:8000 TCP   # Portainer edge agents
   7643:9443 TCP   # Portainer web UI
 172.29.7.7        # SearXNG
   7780:8080 TCP   # SearXNG web UI
 172.29.7.8        # SearXNG redis
 
+# NAS port : Container port
+# For NAS ports
+# First 2/3 digits = last digits of IP - 71 72 73...
+# Last 2 digits = protocol - 7680 7643
 ```
 
 

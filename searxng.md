@@ -27,6 +27,7 @@ cd ..
 nano docker-compose.yml
 
 # Review settings file
+# Most common changes are at top
 nano settings.yml
 
 # Docker up
@@ -35,8 +36,12 @@ docker-compose up -d
 
 ## Access
 
-1. http://192.168.1.209:7780
+* http://192.168.1.209:7780
    
+
+
+
+
 
 ## References
 
@@ -46,4 +51,5 @@ docker-compose up -d
 * https://github.com/searxng/searxng/blob/master/searx/settings.yml
 * https://docs.searxng.org/admin/installation-uwsgi.html
 * https://github.com/searxng/searxng/blob/master/dockerfiles/uwsgi.ini
+* https://github.com/searxng/searxng/blob/master/searx/languages.py
 
