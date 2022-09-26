@@ -16,7 +16,6 @@ services:
       - TZ="America/New_York"  # ⚠️ Server time zone
     volumes:
       - /volume1/docker/searxng/etc:/etc/searxng:rw
-      - /volume1/docker/searxng/default_settings.yml:/etc/searxng/settings.yml
     networks:
       default:
         ipv4_address: 172.29.7.7

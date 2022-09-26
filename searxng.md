@@ -25,13 +25,18 @@ curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/searxng/do
 # Server time zone
 nano docker-compose.yml
 
-# TODO
-# Custom settings
-# curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/searxng/custom-settings.yml -o custom-settings.yml
+# Get settings files
+cd etc
+
+curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/searxng/etc/default_settings.yml -o default_settings.yml
+
+curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/searxng/etc/settings.yml -o settings.yml
+
 
 # Review settings file
 # Most common changes are at top
-# nano settings.yml
+nano settings.yml
+
 
 # Docker up
 docker-compose up -d
