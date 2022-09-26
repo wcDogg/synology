@@ -41,6 +41,7 @@ docker-compose up -d
 ## References
 
 * [SearXNG GitHub](https://github.com/searxng)
+* https://github.com/searxng/searxng-docker/blob/master/docker-compose.yaml
 * https://docs.searxng.org/admin/engines/settings.html
 * https://github.com/searxng/searxng/blob/master/searx/settings.yml
 * https://docs.searxng.org/admin/installation-uwsgi.html

@@ -5,6 +5,23 @@ networks:
     name: nas_network
 
 services:
+  redis:
+    image: "redis:alpine"
+    container_name: redis
+    hostname: redis
+    command: redis-server --save "" --appendonly "no"
+    tmpfs:
+      - /var/lib/redis
+    cap_drop:
+      - ALL
+    cap_add:
+      - SETGID
+      - SETUID
+      - DAC_OVERRIDE
+    networks:
+      default:
+        ipv4_address: 172.29.7.8
+
   searxng:
     image: searxng/searxng:latest
     container_name: searxng
@@ -16,6 +33,13 @@ services:
       - TZ="America/New_York"  # ⚠️ Server time zone
     volumes:
       - /volume1/docker/searxng:/etc/searxng:rw
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - SETGID
+      - SETUID
+      - DAC_OVERRIDE
     networks:
       default:
         ipv4_address: 172.29.7.7

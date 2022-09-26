@@ -1,8 +1,8 @@
 general:
   # Debug mode, only for development
   debug: false
-  # ⚠️ displayed name
-  instance_name: "My SearXNG"
+  # displayed name ??
+  instance_name: "SearXNG"
   # For example: https://example.com/privacy
   privacypolicy_url: false
   # use true to use your own donation page written in searx/info/en/donate.md
@@ -51,6 +51,46 @@ search:
   formats:
     - html
 
+# ⚠️ Categories
+categories_as_tabs:
+  general:
+  images:
+  videos:
+  news:
+  map:
+  # music:
+  # it:
+  # science:
+  files:
+  # social media:
+
+# ⚠️ UI
+ui:
+  # Custom static path - leave it blank if you didn't change
+  static_path: ""
+  static_use_hash: false
+  # Custom templates path - leave it blank if you didn't change
+  templates_path: ""
+  # query_in_title: When true, the result page's titles contains the query
+  # it decreases the privacy, since the browser can records the page titles.
+  query_in_title: false
+  # infinite_scroll: When true, automatically loads the next page when scrolling to bottom of the current page.
+  infinite_scroll: true
+  # URL prefix of the internet archive, don't forgett trailing slash (if needed).
+  # cache_url: "https://webcache.googleusercontent.com/search?q=cache:"
+  # Default interface locale - leave blank to detect from browser information or
+  # use codes from the 'locales' config section
+  default_locale: ""
+  # Open result links in a new tab by default
+  # results_on_new_tab: false
+  # ui theme
+  default_theme: simple
+  # center the results ?  
+  center_alignment: true  
+  theme_args:
+    # style of simple theme: auto, light, dark
+    simple_style: auto
+
 server:
   # If you change port, bind_address or base_url don't forget to rebuild
   # instance's enviroment (make buildenv)
@@ -80,33 +120,6 @@ server:
 redis:
   # https://redis-py.readthedocs.io/en/stable/connections.html#redis.client.Redis.from_url
   url: unix:///usr/local/searxng-redis/run/redis.sock?db=0
-
-# ⚠️ UI
-ui:
-  # Custom static path - leave it blank if you didn't change
-  static_path: ""
-  static_use_hash: false
-  # Custom templates path - leave it blank if you didn't change
-  templates_path: ""
-  # query_in_title: When true, the result page's titles contains the query
-  # it decreases the privacy, since the browser can records the page titles.
-  query_in_title: false
-  # infinite_scroll: When true, automatically loads the next page when scrolling to bottom of the current page.
-  infinite_scroll: true
-  # URL prefix of the internet archive, don't forgett trailing slash (if needed).
-  # cache_url: "https://webcache.googleusercontent.com/search?q=cache:"
-  # Default interface locale - leave blank to detect from browser information or
-  # use codes from the 'locales' config section
-  default_locale: ""
-  # Open result links in a new tab by default
-  # results_on_new_tab: false
-  # ui theme
-  default_theme: simple
-  # center the results ?  
-  center_alignment: true  
-  theme_args:
-    # style of simple theme: auto, light, dark
-    simple_style: auto
 
 # Lock arbitrary settings on the preferences page.  To find the ID of the user
 # setting you want to lock, check the ID of the form on the page "preferences".
@@ -253,18 +266,6 @@ checker:
           query: ["linux", "new york", "bbc"]
         result_container:
           - has_infobox
-
-categories_as_tabs:
-  general:
-  images:
-  videos:
-  news:
-  map:
-  music:
-  it:
-  science:
-  files:
-  social media:
 
 engines:
   - name: 9gag

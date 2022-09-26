@@ -141,13 +141,12 @@ dsm.site.com      https 192.168.1.209 6050
 port.site.com     https 192.168.1.209 9443
 plex.site.com     https 192.168.1.209 32400
 
+search.site.com   https 192.168.1.209 7780
 ```
 
-
-## Networks + Ports
+## Docker nas_network
 
 ```bash
-# Docker nas_network
 172.29.7.0/24     # Subnet
 172.29.7.1        # Gateway 
 172.29.7.2        # NGINX Proxy Manager
@@ -155,11 +154,18 @@ plex.site.com     https 192.168.1.209 32400
 172.29.7.4        # Pi-hole server
 172.29.7.5        # Unbound server
 172.29.7.6        # Portainer
-  7680:8000 TCP   # Edge agents
-  7643:9443 TCP   # Web UI
+  7680:8000 TCP   # Portainer dge agents
+  7643:9443 TCP   # Portainer web UI
 172.29.7.7        # SearXNG
-  7780:8080 TCP   # Web UI
+  7780:8080 TCP   # SearXNG web UI
+172.29.7.8        # SearXNG redis
 
+```
+
+
+## Networks + Ports
+
+```bash
 # Ports are sometimes referenced as local:container
 # If you need to change a port, it's the local (first) port
 

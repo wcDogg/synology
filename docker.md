@@ -30,7 +30,12 @@ docker ps
 
 ## Create a Docker Network
 
-All containers are added to this network, each with their own static IP. This way, when configuring NGINX proxy hosts and subdomains, we can reference a container's hostname vs an IP address.
+* All Docker containers are added to this network.
+* Each container is given a static IP on this network via its `docker-compose.yml`.
+* Simplifies containers that need to communicate with each other. For example, Pi-hole and Unbound don't need a macvlan or bridge.
+* When configuring NGINX proxy hosts, we can reference a container's hostname vs an IP address.
+
+**IMPORTANT** All Docker compose files assume this exact network. See [Network Reference: Docker nas_network](network.md) for a running list of containers in this project.
 
 ```bash
 # Create Network
@@ -51,8 +56,7 @@ networks:
   default:
     name: nas_network
 
-# Add this to each container
-# Increment the last number
+# Assign each container a unique IP
     networks:
       default:
         ipv4_address: 172.77.0.3
