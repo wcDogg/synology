@@ -56,16 +56,16 @@ ui:
   templates_path: "" 
 
 categories_as_tabs:
-  files:  
   general:
   images:
-  # it:  
-  map:
-  # music:
-  news:
-  science:
-  # social media:
   videos:
+  news:
+  map:  
+  files:
+  science:  
+  # it:  
+  # music:
+  # social media:
 
 server:
   # POST is more secure and works in Chromium-based browsers
