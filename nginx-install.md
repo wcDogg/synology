@@ -22,6 +22,7 @@ cd nginx-proxy
 curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/nginx-proxy/docker-compose.yml -o docker-compose.yml
 
 # Review compose file
+# Set strong passwords!!!
 nano docker-compose.yml
 
 # Docker up
@@ -30,7 +31,7 @@ docker-compose up -d
 
 ## Sign In
 
-1. Sign in at the NAS static IP on port 8181 - http://192.168.1.209:8181
+1. Sign in at the NAS static IP on port 8181 - http://192.168.1.209:7281
 2. Defaults 
    1. admin@example.com
    2. changeme
