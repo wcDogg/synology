@@ -1,4 +1,4 @@
-# Synology DS920+ with DSM 7 Setup
+# Synology NAS DSM 7 Setup
 
 
 ## Physical Connections

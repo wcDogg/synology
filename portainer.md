@@ -1,4 +1,4 @@
-# Portainer
+# Install Portainer on Synology NAS
 
 
 ## Install

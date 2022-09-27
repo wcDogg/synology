@@ -1,4 +1,4 @@
-# SynoCommuinty Utilities
+# SynoCommunity Utilities
 
 These steps install Nano, dig, and other common Linux utilities. 
 

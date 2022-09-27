@@ -1,4 +1,4 @@
-# Pi-hole and Unbound
+# Install Pi-hole and Unbound on Synology NAS
 
 
 ## Install

@@ -1,21 +1,22 @@
-# Synology DS920+ NAS with DSM 7
+# Synology NAS with DSM 7 and Docker Network
 
-A technical writer's notes on setting up a Synology NAS for secure access from anywhere.
+A technical writer's notes on setting up a Synology NAS and Docker network for secure access from anywhere. 
 
 ## First Steps
 
 * [Network Reference](network.md)
-* [Synology DS920+ with DSM 7 Setup](nas-setup.md)
-* [SynoCommuinty Utilities](community-utilities.md)
+* [DSM 7 Setup](nas-setup.md)
+* [SynoCommunity Utilities](community-utilities.md)
 * [SSH to Synology NAS](openSSH.md)
-* [Docker and Portainer](docker-portainer.md)
+* [Install Docker and Create Network](docker.md)
+* [Install Portainer](portainer.md)
 * [Install NGINX Proxy Manager](nginx-install.md)
 * [Install SearXNG](searxng.md)
 * [Install Pi-hole and Unbound](pi-hole.md)
+* [Custom Domain and Cloudflare Proxy](custom-domain.md)
 
 WIP
 
-* [Custom Domains](custom-domain.md)
 * [SSL Certificates](ssl-certificates.md)
 * [Configure NGINX Proxy Manager](nginx-configure.md)
 * [Dynamic DNS](dynamic-dns.md)

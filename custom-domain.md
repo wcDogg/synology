@@ -1,4 +1,4 @@
-# Cloudflare Custom Domain
+# Custom Domain and Cloudflare Proxy
 
 The goal is to access different services on the NAS from anywhere using secure URLs like https://dsm.site.
 
@@ -7,11 +7,11 @@ To keep the router's IP private, we use Cloudflare as a proxy. It maps site.com 
 
 ## Register a Domain
 
-These steps assume you are using a TLD for your NAS - site.com - and possibly sub domains for different services - proxy.site.com. 
+These steps assume you are using a TLD for your NAS - site.com - and sub domains for different services - proxy.site.com. 
 
 1. Register a domain name with any provider
 2. On the registrar's site, navigate to the domain's DNS settings
-3. Delete exiting DNS records
+3. Delete exiting DNS records - usually 'parking' records
 
 
 ## Cloudflare DNS Records
@@ -44,6 +44,6 @@ Prevents 'too many redirects' error once router's IP is proxied.
 
 Once the DNS records have propagated, try logging in using your domain name. 
 
-* http://site.com:6049
-* http://site.com:8181
+* http://site.com:7080
+* http://site.com:7043
 

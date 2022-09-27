@@ -1,4 +1,4 @@
-# Install NGINX Proxy Manager
+# Install NGINX Proxy Manager on Synology NAS
 
 
 ## Install
