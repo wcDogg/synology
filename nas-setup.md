@@ -178,21 +178,63 @@ I don't recommend QR code 2FA - reference only. If you do use 2FA, be sure to se
 Sign in to DSM from: http://192.168.1.209:7043
 
 
-## Firewall + Router
-
-See [Network Reference](network.md) for initial configuration.
-
-
 ## Email and Notifications
 
 TODO: https://www.youtube.com/watch?v=wXCYEby3FJ8
 
 
-## References
 
-* https://www.youtube.com/watch?v=MyQy4Wj679A&t=24s
-* https://www.wundertech.net/synology-nas-initial-setup-ultimate-guide
-* https://www.youtube.com/watch?v=mStoaZjJhJE
-* https://www.youtube.com/watch?v=G3BJo4B1GgU&t=0s
-* https://www.youtube.com/watch?v=MISc_uqf0Q4
+## Add the SynoCommunity Repo
+
+1. DSM > Package Center 
+2. Settings button > Package Sources tab > Add
+3. Name = SynoCommunity
+4. Location = https://packages.synocommunity.com/
+5. OK
+6. A Community tab is added to Package Center
+
+
+## Install SynoCli Tools
+
+Nano, dig, and other common Linux utilities. 
+
+1. DSM > Package Center > Community tah
+2. Search for and install SynoCli Tools
+3. Accept the 3rd party warning
+
+```bash
+# SynoCli File Tools
+less, tree, ncdu, jdupes, rhash, mc (midnight-commander), 
+nano, file, detox, rmlint, rnm, pcre2, zstd
+
+# SynoCli Network Tools
+screen, tmux, socat, nmap, arp-scan, mtr, links, rsync,
+autossh, etherwake, telenet, whois, arpaname, delv, dig,
+mdig, sshfs, ser2net
+```
+
+## Initial NAS Firewall Rules
+
+* Open all ports listed here:  [NAS and Docker nas_network](network.md) 
+* Docker ports are given like `7243:443` = NAS port : Docker port
+* Open the NAS ports - not the Docker ports
+
+I create a rule for each port - vs opening  multiple ports with a single rule. This simplifies testing and management. 
+
+1. DSM > Control Panel > Security > Firewall
+2. Enable Firewall = True
+3. Enable Firewall Notifications = True
+4. Firewall Profile = Default > Edit Rules - dialog opens
+5. Create > Ports > Custom Port
+
+
+## Initial Router Port Forwarding
+
+```bash
+# Origin port - Protocol - NAS IP - NAS port
+80  TCP 192.168.1.209 80
+443 TCP 192.168.1.209 443
+```
+
+
 

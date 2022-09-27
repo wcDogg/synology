@@ -6,7 +6,6 @@ A technical writer's notes on setting up a Synology NAS and Docker network for s
 
 * [Network Reference](network.md)
 * [DSM 7 Setup](nas-setup.md)
-* [SynoCommunity Utilities](community-utilities.md)
 * [SSH to Synology NAS](openSSH.md)
 * [Install Docker and Create Network](docker.md)
 * [Install Portainer](portainer.md)

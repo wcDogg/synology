@@ -5,62 +5,10 @@
 A running list of how URLs progress from port to domain to subdomain.
 
 ```bash
-# DSM
-http://192.168.1.209:6049
-https://192.168.1.209:6050
-
-http://site.com:6049
-https://site.com:6050
-
-http://dsm.site.com
-https://dsm.site.com
-
-# Portainer
-# http://192.168.1.209:9443
-https://192.168.1.209:9443
-
-# NGINX
-http://192.168.1.209:8181
-https://192.168.1.209:8181
-
-http://site.com:8181
-https://site.com:8181
-
-http://proxy.site.com
-https://proxy.site.com
 
 
-# Pi-hole
-http://10.2.0.100/admin
-
-# SearXNG
-http://192.168.1.209:8484
-
-# Plex
-http://192.168.1.209:32400
-https://192.168.1.209:32400
-
-http://site.com:32400
-https://site.com:32400
-
-http://plex.site.com
-https://plex.site.com
 ```
 
-## Initial NAS Firewall Rules
-
-These ports should be open for the majority of the setup steps. These rules assume you are following the examples exactly. 
-
-1. DSM > Control Panel > Security > Firewall
-2. Enable Firewall = True
-3. Enable Firewall Notifications = True
-4. Firewall Profile = Default > Edit Rules - dialog opens
-5. Create > Ports > Custom Port
-
-```bash
-80 TCP      # Let's Encrypt   
-443 TCP     # Let's Encrypt 
-```
 
 ## Cloudflare DNS Records
 
@@ -97,6 +45,7 @@ site.com -> 192.168.1.209
 
 # Port forwarding to NAS during config
 # Advanced > Security & Firewall > Port Forwarding
+# Origin port - Protocol - NAS IP - NAS port
 80  TCP 192.168.1.209 80
 443 TCP 192.168.1.209 443
 
@@ -109,9 +58,6 @@ site.com -> 192.168.1.209
 
 ```bash
 # NAS static IP
-192.168.1.209
-
-# SSH > ip addr
 127.0.0.1/8       # lo inet
 192.168.1.209/24  # eth0 inet
 
@@ -152,6 +98,11 @@ site.com -> 192.168.1.209
 172.29.7.7        # searxng
   7780:8080 TCP     # searxng web UI
 ```
+
+
+
+
+
 
 ## NGINX Proxy Hosts
 
