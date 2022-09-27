@@ -58,30 +58,17 @@ These ports should be open for the majority of the setup steps. These rules assu
 5. Create > Ports > Custom Port
 
 ```bash
-7080 TCP    # NAS HTTP 5000
-7043 TCP    # NAS HTTPS 5001
-7022 TCP    # NAS SSH 22
-
 80 TCP      # Let's Encrypt   
 443 TCP     # Let's Encrypt 
-
-
-```
-
-## Final NAS Firewall Rules
-
-```bash
-# The last / bottom rule should
-# always = Deny All
 ```
 
 ## Cloudflare DNS Records
 
 ```bash
 # DNS records for site.com
-# 102.19.146.13 = router's public IPv4
 # Proxy Status = Disabled until SSL cert is obtained
-A @           102.19.146.13
+
+A @           102.19.146.13  # Router public IPv4
 CNAME www     @
 CNAME dsm     @
 CNAME proxy   @ 
@@ -114,28 +101,27 @@ site.com -> 192.168.1.209
 443 TCP 192.168.1.209 443
 
 # Port forwarding to NGINX 
-80  TCP 192.168.1.209 8080
-443 TCP 192.168.1.209 4443
-
-# Port forwarding final rules
-# 80  TCP 192.168.1.209 ???
-# 443 TCP 192.168.1.209 ???
+80  TCP 192.168.1.209 7280
+443 TCP 192.168.1.209 7243
 ```
 
-## NGINX Proxy Hosts
+## NAS and Docker nas_network
 
 ```bash
-proxy.site.com    http  192.168.1.209 8181
-dsm.site.com      https 192.168.1.209 6050
-port.site.com     https 192.168.1.209 9443
-plex.site.com     https 192.168.1.209 32400
+# NAS static IP
+192.168.1.209
 
-search.site.com   https 192.168.1.209 7780
-```
+# SSH > ip addr
+127.0.0.1/8       # lo inet
+192.168.1.209/24  # eth0 inet
 
-## Docker nas_network
+# DSM > Control Panel > Login Portal > DSM tab
+7080 TCP    # NAS HTTP 5000
+7043 TCP    # NAS HTTPS 5001
 
-```bash
+# DSM > Control Panel > Terminal & SNMP > Terminal tab
+7022 TCP    # NAS SSH 22
+
 # Docker nas_network
 172.29.7.0/24     # Subnet
 172.29.7.1        # Gateway 
@@ -146,6 +132,9 @@ search.site.com   https 192.168.1.209 7780
   7281:81 TCP       # nginx-proxy web UI
 172.29.7.3        # nginx-mariadb
   7333 TCP          # nginx-mariadb internal
+
+  80 TCP            # Let's Encrypt  
+  443 TCP           # Let's Encrypt
 
 172.29.7.4        # pi-hole server
   7453:53/tcp       # pi-hole DNS
@@ -162,39 +151,19 @@ search.site.com   https 192.168.1.209 7780
 
 172.29.7.7        # searxng
   7780:8080 TCP     # searxng web UI
-
-
-# NAS port : Container port
-# For NAS ports
-# First 2/3 digits = last digits of IP - 71 72 73...
-# Last 2 digits = protocol - 7680 7643
 ```
 
-
-## Networks + Ports
+## NGINX Proxy Hosts
 
 ```bash
-# Ports are sometimes referenced as local:container
-# If you need to change a port, it's the local (first) port
+proxy.site.com    http  192.168.1.209 8181
+dsm.site.com      https 192.168.1.209 6050
+port.site.com     https 192.168.1.209 9443
+search.site.com   https 192.168.1.209 7780
 
-# NAS static IP
-192.168.1.209
-
-# SSH > ip addr
-127.0.0.1/8       # lo inet
-192.168.1.209/24  # eth0 inet
-
-# DSM > Control Panel > Login Portal > DSM tab
-6049 TCP    # NAS HTTP 5000
-6050 TCP    # NAS HTTPS 5001
-
-# DSM > Control Panel > Terminal & SNMP > Terminal tab
-49200 TCP   # NAS SSH 
-
-# Let's Encrypt
-80 TCP    
-443 TCP
+plex.site.com     https 192.168.1.209 32400
 ```
+
 
 
 ## References

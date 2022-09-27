@@ -169,29 +169,18 @@ I don't recommend QR code 2FA - reference only. If you do use 2FA, be sure to se
 ## Web UI
 
 1. DSM > Control Panel > Login Portal > DSM tab
-2. Change DSM Port (HTTP) to 6049
-3. Change DSM Port (HTTPS) to 6050
+2. Change DSM Port (HTTP) to 7080
+3. Change DSM Port (HTTPS) to 7043
 4. Automatically redirect HTTP to HTTPS = True
 5. Save
 6. Wait a minute for server to restart
 
-
-## Date, Time, Timezone
-
-1. DSM > Control Panel > Regional Options
-2. 
+Sign in to DSM from: http://192.168.1.209:7043
 
 
 ## Firewall + Router
 
 See [Network Reference](network.md) for initial configuration.
-
-
-## Sign In to Web UI
-
-At this point you should be able to reach the DSM web UI at the NAS's static IP address at port 6049 (http).
-
-* http://192.168.1.209:6049
 
 
 ## Email and Notifications
