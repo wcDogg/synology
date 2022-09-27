@@ -38,18 +38,12 @@ docker-compose up -d
 ## Sign In
 
 1. http://192.168.1.209:7480/admin
-2. Default PW = oectBU0UaOCga82KnoA5
-3. Go to Settings > DNS. Note that:
+2. http://site.com:7480/admin
+3. Default PW = oectBU0UaOCga82KnoA5
+4. Go to Settings > DNS. Note that:
    1. Upstream DNS Servers = 172.29.7.5 (Unbound)
    2. Interface Settings = Respond only on eth0
 
-
-## Change Password
-
-```bash
-
-
-```
 
 ## Test Internally from SSH Shell
 
