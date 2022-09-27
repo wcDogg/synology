@@ -2,11 +2,7 @@ version: "2"
 
 networks:
   default:
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.77.0.0/24
-        - gateway: 172.77.0.1
+    name: nas_network
 
 services:
   unbound:
@@ -17,11 +13,11 @@ services:
     volumes:
       - /volume1/docker/pi-hole/unbound:/opt/unbound/etc/unbound
     ports:
-      - "8753:53/tcp"   # DNS traffic
-      - "8753:53/udp"   # DNS traffic
+      - "7553:53/tcp"   # DNS traffic
+      - "7553:53/udp"   # DNS traffic
     networks:
       default:
-        ipv4_address: 172.77.0.3
+        ipv4_address: 172.29.7.5
 
   pi-hole:
     depends_on: [unbound]
@@ -30,24 +26,22 @@ services:
     hostname: pi-hole
     restart: unless-stopped
     ports:
-      - "8753:53/tcp"   # DNS traffic
-      - "8753:53/udp"   # DNS traffic
-      - "8780:80/tcp"   # Web UI
-      - "8743:443/tcp"  # Web UI
+      - "7453:53/tcp"   # DNS traffic
+      - "7453:53/udp"   # DNS traffic
+      - "7480:80/tcp"   # Web UI
+      - "7443:443/tcp"  # Web UI
     dns:
       - 127.0.0.1
-      - 172.77.0.3  # Unbound IP
+      - 172.29.7.5  # Unbound IP
     environment:
       TZ: "America/New_York"   # ⚠️ Server time zone
-      WEBPASSWORD: 'changeme'  # ⚠️ A temporary PW
-      ServerIP: 172.77.2       # Pi-hole IP
-      DNS1: 172.77.0.3         # Unbound IP
-      DNS2: 172.77.0.3         # Twice else defaults to Google
+      WEBPASSWORD: 'changeme'  # ⚠️ A strong PW
+      ServerIP: 172.29.7.4     # Pi-hole IP
+      DNS1: 172.29.7.5         # Unbound IP
+      DNS2: 172.29.7.5         # Twice else defaults to Google
     volumes:
       - /volume1/docker/pi-hole/etc-pihole:/etc/pihole
       - /volume1/docker/pi-hole/etc-dnsmasq.d:/etc/dnsmasq.d
     networks:
       default:
-        ipv4_address: 172.77.0.2
-
-
+        ipv4_address: 172.29.7.4

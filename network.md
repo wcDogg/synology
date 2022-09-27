@@ -147,8 +147,14 @@ search.site.com   https 192.168.1.209 7780
 172.29.7.3        # nginx-mariadb
   7333 TCP          # nginx-mariadb internal
 
-172.29.7.4        # Pi-hole server
-172.29.7.5        # Unbound server
+172.29.7.4        # pi-hole server
+  7453:53/tcp       # pi-hole DNS
+  7453:53/udp       # pi-hole DNS
+  7480:80/tcp       # pi-hole web UI HTTP
+  7443:443/tcp      # pi-hole web UI HTTPS
+172.29.7.5        # unbound server
+  7553:53/tcp       # DNS traffic
+  7553:53/udp       # DNS traffic
 
 172.29.7.6        # portainer
   7680:8000 TCP     # portainer edge agents
