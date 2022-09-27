@@ -6,8 +6,8 @@ A technical writer's notes on setting up a Synology NAS for secure access from a
 
 * [Network Reference](network.md)
 * [Synology DS920+ with DSM 7 Setup](nas-setup.md)
+* [SynoCommuinty Utilities](community-utilities.md)
 * [SSH to Synology NAS](openSSH.md)
-* [Nano Editor](nano.md)
 * [Docker and Portainer](docker-portainer.md)
 * [Install NGINX Proxy Manager](nginx-install.md)
 * [Install SearXNG](searxng.md)

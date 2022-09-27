@@ -13,9 +13,9 @@ Windows user? See [Windows: OpenSSH](https://github.com/wcDogg/windows/blob/main
 
 1. DSM > Control Panel > Terminal & SNMP > Terminal tab
    1. Enable SSH Service = True/checked
-   2. Port = 49200
+   2. Port = 7022
 2. DSM Control Panel > Security > Firewall tab
-   1. Ports > Custom = 49200/TCP
+   1. Ports > Custom = 7022/TCP
    2. See [Network Reference](network.md) for initial NAS firewall rules
 3. Home Services is enabled - see [NAS Setup](nas-setup.md)
 
@@ -23,7 +23,7 @@ Windows user? See [Windows: OpenSSH](https://github.com/wcDogg/windows/blob/main
 ## SSH with DSM Password
 
 ```powershell
-ssh wcdogg@192.168.1.209 -p49200 
+ssh wcdogg@192.168.1.209 -p7022 
 password
 ```
 
@@ -47,7 +47,7 @@ ssh-keygen -t rsa -b 4096
 
 ```powershell
 # SSH with password to NAS
-ssh wcdogg@192.168.1.209 -p49200
+ssh wcdogg@192.168.1.209 -p7022
 
 # SSH drops you into your home directory - confirm
 pwd
@@ -83,7 +83,7 @@ In a separate PowerShell not SSHed to NAS:
 ```powershell
 # Note the lowercase drive and reversed slashes in Windows path
 # Requires NAS password
-scp -P 49200 c:/Users/wcd/.ssh/wcd_nas_rsa4096.pub wcdogg@wcdNAS:/volume1/homes/wcdogg/.ssh/
+scp -P 7022 c:/Users/wcd/.ssh/wcd_nas_rsa4096.pub wcdogg@wcdNAS:/volume1/homes/wcdogg/.ssh/
 ```
 
 ## Append Public to authorized_keys
@@ -106,9 +106,8 @@ One-time edit of `/etc/ssh/sshd_config`.
 ```powershell
 # Edit this file
 # Last time we need NAS password :)
-sudo vim /etc/ssh/sshd_config
-password
-i  # Insert mode
+sudo -i
+nano /etc/ssh/sshd_config
 
 # Uncomment these lines
 PubkeyAuthentication yes
@@ -119,11 +118,10 @@ ChallengeResponseAuthentication no
 PasswordAuthentication no
 
 # Save file
-Esc  # return to command mode
-:wq  # Save and quit
+Ctrl+X -> Y -> Enter
 
 # View file
-sudo cat /etc/ssh/sshd_config
+cat /etc/ssh/sshd_config
 ```
 
 ## Restart SSH and Test
@@ -134,10 +132,10 @@ sudo cat /etc/ssh/sshd_config
 
 ```powershell
 # SSH with key file
-ssh -i ~/.ssh/wcd_nas_rsa4096 wcdogg@192.168.1.209 -p49200
+ssh -i ~/.ssh/wcd_nas_rsa4096 wcdogg@192.168.1.209 -p7022
 ```
 
-**You can stop here.** The remaining steps are for adding your key to Windows Security Context.
+**You can stop here.** The remaining steps are for adding your key to Windows Security Context so you don't have to pass in the key file.
 
 
 ## Windows: Add Private Key to Windows Security Context
@@ -173,15 +171,16 @@ cat C:\Users\wcd\.ssh\wcd_nas_rsa4096.pub >> C:\ProgramData\ssh\administrators_a
 At this point you can SSH without passing in the key file or using a password.
 
 ```powershell
-ssh wcdogg@192.168.1.209 -p49200
+ssh wcdogg@192.168.1.209 -p7022
 ```
 
 Add this to your PowerShell user profile - and not the global profile.
 
 ```ps1
 # SSH to NAS
-function NAS {ssh wcdogg@192.168.1.209 -p49200}
+function NAS {ssh wcdogg@192.168.1.209 -p7022}
 
 # Now you can SSH with this command
 NAS
+nas
 ```
