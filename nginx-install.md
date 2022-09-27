@@ -31,11 +31,15 @@ docker-compose up -d
 
 ## Sign In
 
-1. Sign in at the NAS static IP on port 8181 - http://192.168.1.209:7281
-2. Defaults 
-   1. admin@example.com
-   2. changeme
-3. Follow prompts to change credentials
+1. Sign in at the NAS static IP on port 8181 - http://192.168.1.209:7281 
+   1. UN default = admin@example.com
+   2. PW default = changeme
+2. Follow prompts to change credentials
+3. MariaDB
+   1. http://192.168.1.209:7333
+   2. UN default = npm
+   3. PW default = ZM2dc4sPeEKzJJv8m062yzUZAH
+   4. Root PW default = LQPmKlDAqzyhMHEbh8Iguj1dVx
 
 
 ## References

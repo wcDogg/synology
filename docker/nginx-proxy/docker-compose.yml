@@ -6,22 +6,22 @@ networks:
 
 services:
   nginx-proxy:
-    image: 'jc21/nginx-proxy-manager:latest'
+    image: "jc21/nginx-proxy-manager:latest"
     container_name: nginx-proxy
     hostname: nginx-proxy
     restart: unless-stopped
     ports:
-      - '7280:80'   # HTTP
-      - '7281:81'   # Web UI
-      - '7243:443'  # HTTPS 
+      - "7280:80"   # HTTP
+      - "7281:81"   # Web UI
+      - "7243:443"  # HTTPS 
     environment:
       DB_MYSQL_HOST: "nginx-mariadb" 
       DB_MYSQL_PORT: 7333 
       DB_MYSQL_NAME: "nginx-db"
-      DB_MYSQL_USER: "npm"
-      DB_MYSQL_PASSWORD: "npm" 
+      DB_MYSQL_USER: "npm"  # ⚠️ Match MYSQL_USER
+      DB_MYSQL_PASSWORD: "ZM2dc4sPeEKzJJv8m062yzUZAH" # ⚠️ Match MYSQL_PASSWORD
       # Uncomment this if IPv6 is not enabled on your host
-      # DISABLE_IPV6: 'true'
+      # DISABLE_IPV6: "true"
     volumes:
       - /volume1/docker/nginx-proxy/data:/data
       - /volume1/docker/nginx-proxy/lets-encrypt:/etc/letsencrypt
@@ -32,17 +32,17 @@ services:
         ipv4_address: 172.29.7.2
 
   nginx-mariadb:
-    image: 'jc21/mariadb-aria:latest'
+    image: "jc21/mariadb-aria:latest"
     container_name: nginx-mariadb
     hostname: nginx-mariadb
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: 'nginx-db'
+      MYSQL_DATABASE: "nginx-db"
       MYSQL_TCP_PORT: 7333
       MYSQL_UNIX_PORT: 7333
-      MYSQL_USER: 'npm'           # ⚠️ Match DB_MYSQL_USER
-      MYSQL_PASSWORD: 'npm'       # ⚠️ Match DB_MYSQL_PASSWORD
-      MYSQL_ROOT_PASSWORD: 'npm'  # ⚠️ Set strong PW here
+      MYSQL_USER: "npm"  # ⚠️ Match DB_MYSQL_USER
+      MYSQL_PASSWORD: "ZM2dc4sPeEKzJJv8m062yzUZAH"      # ⚠️ Match DB_MYSQL_PASSWORD
+      MYSQL_ROOT_PASSWORD: "LQPmKlDAqzyhMHEbh8Iguj1dVx" # ⚠️ Root PW
     volumes:
       - /volume1/docker/nginx-mariadb:/var/lib/mysql
     networks:
