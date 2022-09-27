@@ -1,31 +1,5 @@
 # Network Reference
 
-## URL Progression
-
-A running list of how URLs progress from port to domain to subdomain.
-
-```bash
-
-
-```
-
-
-## Cloudflare DNS Records
-
-```bash
-# DNS records for site.com
-# Proxy Status = Disabled until SSL cert is obtained
-
-A @           102.19.146.13  # Router public IPv4
-CNAME www     @
-CNAME dsm     @
-CNAME proxy   @ 
-CNAME plex    @
-CNAME search  @
-CNAME port    @
-CNAME pi      @
-CNAME vault   @
-```
 
 ## Fios G3100 Router
 
@@ -101,25 +75,45 @@ site.com -> 192.168.1.209
 
 
 
+## Cloudflare DNS Records
 
+```bash
+# DNS records for site.com
+# Proxy Status = Disabled until SSL cert is obtained
 
+A @           102.19.146.13  # Router public IPv4
+CNAME www     @
+CNAME dsm     @
+CNAME pi      @
+CNAME plex    @
+CNAME port    @
+CNAME proxy   @ 
+CNAME search  @
+CNAME vault   @
+```
 
 ## NGINX Proxy Hosts
 
 ```bash
-proxy.site.com    http  192.168.1.209 8181
-dsm.site.com      https 192.168.1.209 6050
-port.site.com     https 192.168.1.209 9443
-search.site.com   https 192.168.1.209 7780
-
-plex.site.com     https 192.168.1.209 32400
+dsm.site.com      https 192.168.1.209 7043
+pi.site.com       https pi-hole 7443
+# plex.site.com     https 192.168.1.209 32400
+port.site.com     https portainer 7643
+proxy.site.com    http  nginx-proxy 7281
+search.site.com   https searxng 7780
+vault.site.com    https vaultwarden 
 ```
 
+## URL Progression
 
+A running list of how URLs progress from port to domain to subdomain.
+
+```bash
+
+
+```
 
 ## References
-
-At several points you'll change a default port or define a new port. 
 
 * NAS ports in use: DSM > Info Center > Services tab
 * [Synology: DSM Services Ports](https://kb.synology.com/en-global/DSM/tutorial/What_network_ports_are_used_by_Synology_services)

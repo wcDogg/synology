@@ -25,9 +25,3 @@ WIP
 
 * [Reinstall DSM 7](reinstall-dsm.md)
 
-
-## Resources
-
-* [WunderTech YouTube](https://www.youtube.com/c/WunderTechTutorials)
-* [WunderTech Blog](https://www.wundertech.net/)
-
