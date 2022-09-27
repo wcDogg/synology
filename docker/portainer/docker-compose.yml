@@ -18,4 +18,4 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       default:
-        ipv4_address: 172.77.0.6
+        ipv4_address: 172.29.7.6
