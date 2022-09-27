@@ -58,25 +58,14 @@ These ports should be open for the majority of the setup steps. These rules assu
 5. Create > Ports > Custom Port
 
 ```bash
-6049 TCP    # NAS HTTP 5000
-6050 TCP    # NAS HTTPS 5001
-49200 TCP   # NAS SSH 22
-
-9443 TCP    # Portainer web UI
-8484 TCP    # SearXNG web UI
-32400 TCP   # Plex web UI
+7080 TCP    # NAS HTTP 5000
+7043 TCP    # NAS HTTPS 5001
+7022 TCP    # NAS SSH 22
 
 80 TCP      # Let's Encrypt   
 443 TCP     # Let's Encrypt 
 
-4443 TCP    # nginx-proxy HTTPS
-8080 TCP    # nginx-proxy HTTP
-8181 TCP    # nginx-proxy web UI
 
-8753 UDP    # Pi-hole DNS traffic
-8753 TCP    # Pi-hole DNS traffic
-8780 TCP    # Pi-hole Web UI
-8743 TCP    # Pi-hole Web UI
 ```
 
 ## Final NAS Firewall Rules
@@ -147,24 +136,27 @@ search.site.com   https 192.168.1.209 7780
 ## Docker nas_network
 
 ```bash
+# Docker nas_network
 172.29.7.0/24     # Subnet
 172.29.7.1        # Gateway 
-172.29.7.2        # NGINX Proxy Manager
-  7233:3306 TCP     # Internal nginx-mariadb
+
+172.29.7.2        # nginx-proxy
   7243:443 TCP      # nginx-proxy HTTPS
   7280:80 TCP       # nginx-proxy HTTP
   7281:81 TCP       # nginx-proxy web UI
-172.29.7.3        # NGINX MariaDB
+172.29.7.3        # nginx-mariadb
+  7333 TCP          # nginx-mariadb internal
 
 172.29.7.4        # Pi-hole server
 172.29.7.5        # Unbound server
 
-172.29.7.6        # Portainer
-  7680:8000 TCP     # Portainer edge agents
-  7643:9443 TCP     # Portainer web UI
-172.29.7.7        # SearXNG
-  7780:8080 TCP     # SearXNG web UI
-# 172.29.7.8      # SearXNG redis
+172.29.7.6        # portainer
+  7680:8000 TCP     # portainer edge agents
+  7643:9443 TCP     # portainer web UI
+
+172.29.7.7        # searxng
+  7780:8080 TCP     # searxng web UI
+
 
 # NAS port : Container port
 # For NAS ports
@@ -196,25 +188,6 @@ search.site.com   https 192.168.1.209 7780
 # Let's Encrypt
 80 TCP    
 443 TCP
-
-
-# NGINX 
-
-
-# Servers
-32400 TCP         # Plex Media Server web UI
-8484:8080 TCP     # SearXNG web UI
-
-# Pi-hole
-172.29.0.0/24     # Subnet
-172.29.0.1        # Gateway    
-172.29.0.2        # Pi-hole server
-172.29.0.3        # Unbound server
-
-8753:53 UDP       # DNS traffic
-8753:53 TCP       # DNS traffic
-8780:80 TCP       # Web UI
-8743:443 TCP      # Web UI
 ```
 
 

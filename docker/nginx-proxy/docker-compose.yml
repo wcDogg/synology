@@ -12,11 +12,11 @@ services:
     restart: unless-stopped
     ports:
       - '7280:80'   # HTTP
-      - '7243:443'  # HTTPS 
       - '7281:81'   # Web UI
+      - '7243:443'  # HTTPS 
     environment:
       DB_MYSQL_HOST: "nginx-mariadb" 
-      DB_MYSQL_PORT: 7233  # DB internal port
+      DB_MYSQL_PORT: 7333 
       DB_MYSQL_NAME: "nginx-db"
       DB_MYSQL_USER: "npm"
       DB_MYSQL_PASSWORD: "npm" 
@@ -37,7 +37,9 @@ services:
     hostname: nginx-mariadb
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: 'nginx-db'  
+      MYSQL_DATABASE: 'nginx-db'
+      MYSQL_TCP_PORT: 7333
+      MYSQL_UNIX_PORT: 7333
       MYSQL_USER: 'npm'           # ⚠️ Match DB_MYSQL_USER
       MYSQL_PASSWORD: 'npm'       # ⚠️ Match DB_MYSQL_PASSWORD
       MYSQL_ROOT_PASSWORD: 'npm'  # ⚠️ Set strong PW here

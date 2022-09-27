@@ -30,7 +30,7 @@ docker-compose up -d
 
 Portainer generates a self-signed SSL so you can sign in at an HTTP URL. Weirdly, it will still be insecure?
 
-1. https://192.168.1.209:9443
+1. https://192.168.1.209:7643
 2. Follow screen to create a new user
 3. Select 'Get Started' to use local environment
 
