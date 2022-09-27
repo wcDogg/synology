@@ -14,9 +14,8 @@ services:
       - 7680:8000   # Edge agents
       - 7643:9443   # Web UI
     volumes:
-      - /volume1/docker/portainer-ce:/data
+      - /volume1/docker/portainer:/data
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       default:
         ipv4_address: 172.77.0.6
-

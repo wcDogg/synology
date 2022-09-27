@@ -158,6 +158,7 @@ search.site.com   https 192.168.1.209 7780
 
 172.29.7.4        # Pi-hole server
 172.29.7.5        # Unbound server
+
 172.29.7.6        # Portainer
   7680:8000 TCP     # Portainer edge agents
   7643:9443 TCP     # Portainer web UI

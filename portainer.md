@@ -12,10 +12,10 @@ password
 cd /volume1/docker
 
 # Create volume
-mkdir portainer-ce
+mkdir portainer
 
 # Get compose file
-cd portainer-ce
+cd portainer
 
 curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/portainer/docker-compose.yml -o docker-compose.yml
 
