@@ -71,6 +71,10 @@ site.com -> 192.168.1.209
 
 172.29.7.7        # searxng
   7780:8080 TCP     # searxng web UI
+
+172.29.7.8        # vaultwarden
+  7880:80           # vaultwarden web UI
+
 ```
 
 

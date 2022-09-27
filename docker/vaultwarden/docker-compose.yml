@@ -1,0 +1,21 @@
+version: "2"
+
+networks:
+  default:
+    name: nas_network
+
+services:
+  vaultwarden:
+    image: "vaultwarden/server:latest"
+    container_name: vaultwarden
+    hostname: vaultwarden
+    restart: unless-stopped
+    ports:
+      - 7880:80 # Web ui
+    environment:
+      WEBSOCKET_ENABLED: "true"
+    volumes:
+      - /volume1/docker/vaultwarden:/data
+    networks:
+      default:
+        ipv4_address: 172.29.7.8
