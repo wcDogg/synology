@@ -11,10 +11,10 @@ services:
     hostname: "unbound"
     restart: unless-stopped
     volumes:
-      - /volume1/docker/pi-hole/unbound:/opt/unbound/etc/unbound
+      - /volume1/docker/pi-hole/unbound/:/opt/unbound/etc/unbound/
     ports:
-      - "7553:53/tcp"   # DNS traffic
-      - "7553:53/udp"   # DNS traffic
+      - "7553:53/tcp"   # DNS traffic - unbound.conf
+      - "7553:53/udp"   # DNS traffic - unbound.conf
     networks:
       default:
         ipv4_address: 172.29.7.5
@@ -31,7 +31,7 @@ services:
       - "7480:80/tcp"   # Web UI
       - "7443:443/tcp"  # Web UI
     dns:
-      - 127.0.0.1
+      - 127.0.0.1   # lo inet
       - 172.29.7.5  # Unbound IP
     environment:
       WEBPASSWORD: "oectBU0UaOCga82KnoA5"  # ⚠️ A strong PW
@@ -40,8 +40,8 @@ services:
       DNS1: 172.29.7.5         # Unbound IP
       DNS2: 172.29.7.5         # Twice else defaults to Google
     volumes:
-      - /volume1/docker/pi-hole/etc-pihole:/etc/pihole
-      - /volume1/docker/pi-hole/etc-dnsmasq.d:/etc/dnsmasq.d
+      - /volume1/docker/pi-hole/etc-pihole/:/etc/pihole/
+      - /volume1/docker/pi-hole/etc-dnsmasq.d/:/etc/dnsmasq.d/
     networks:
       default:
         ipv4_address: 172.29.7.4

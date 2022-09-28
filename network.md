@@ -106,7 +106,7 @@ plex.site.com     https 192.168.1.209 32400
 port.site.com     https 192.168.1.209 7643
 # proxy.site.com    http  192.168.1.209 7281
 search.site.com   http 192.168.1.209 7780
-# vault.site.com    http 192.168.1.209 7880
+vault.site.com    http 192.168.1.209 7880
 ```
 
 ## URL Progression
@@ -133,8 +133,6 @@ http://site.com:7281
 
 http://proxy.site.com - Congrats page, not login? 
 # https://proxy.site.com
-
-http://192.168.1.209:7281/nginx/proxy
 
 #
 # Pi-hole
