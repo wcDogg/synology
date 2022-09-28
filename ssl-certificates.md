@@ -31,29 +31,3 @@ This step obtains an SSL certificate for NAS using the TLD.
 
 Confirm DSM is available at https://site.com:6050 - URL displays HTTPS and lock.
 
-
-## STOP HERE
-
-## Create SSL Certificates and Export
-
-Using dsm.site.com as an example, for each sub domain, create a certificate:
-
-1. DSM > Security > Certificate > Add
-2. Add New Certificate > Next
-3. Get a Certificate from Let's Encrypt > Next
-4. Details
-   1. Domain Name = dsm.site.com (sub domain)
-   2. Email = <email>
-   3. Subject Alternative Name = blank
-5. Done
-
-Export certificate:
-
-1. On the Certificates screen, highlight the dsm.site.com certificate
-2. Action > Export
-3. Download zip to local computer - the important files are: 
-   1. privatekey.pem
-   2. cert.pem
-   3. chain.pem
-4. You'll want to keep these organized in directories for management over time
-

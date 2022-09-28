@@ -1,4 +1,4 @@
-# Plex Media Server
+# Install Plex Media Server on Synology NAS
 
 ## Create a Shared Folder
 
@@ -10,15 +10,10 @@
 6. Hide sub-folders = False
 7. Enable Recycle Bin = True
 8. Restrict to admins only = False
-9. Next
-10. Encrypt this shared folder = False
-11. Next
-12. Enable data checksum = False
-13. Enable shared folder quota = False
-14. Next
-15. Confirm + Next
-16. User permissions - Check the Read/Write option for both the admin account and your current account.  
-17. Apply
+9.  Encrypt this shared folder = False
+10. Enable data checksum = False
+11. Enable shared folder quota = False
+12. User permissions - Check the Read/Write option for both the admin account and your current account.  
 
 
 ## Drag-Drop Media
@@ -31,12 +26,7 @@
 
 ## Firewall
 
-1. DSM > Control Panel > Security > Firewall tab
-2. Default Profile > Edit Rules
-3. Create > Custom Port = 32400/TCP
-4. Ensure the Deny All rule is at bottom
-
-The port can be changed later from Plex's advanced settings.
+Temporarily open port 32400 TCP on NAS firewall - changed later from Plex's advanced settings.
 
 
 ## Install Plex
@@ -44,11 +34,12 @@ The port can be changed later from Plex's advanced settings.
 1. DSM > Package Center
 2. Search for Plex 
 3. Click the Join Beta button - a dialog opens. Accept the terms.
-4. Click Install
+4. Click Join Beta again - starts Install
 5. Shared Folder Path = /volume1/Plex
 6. Confirm settings + click Done
 
-You'll hit an error saying Plex does not have the needed permissions. 
+
+## Add Folder Permissions
 
 1. DSM > Control Panel > Shared Folder
 2. Plex > Edit 
@@ -56,12 +47,10 @@ You'll hit an error saying Plex does not have the needed permissions.
 4. Check the Read/Write option for Plex
 5. Save
 
-Return to Package Center. Click Plex's Repair button.
-
 
 ## Launch Plex
 
-1. From Package Center, click Open
+1. DSM > Package Center > Plex > Open
 2. A new tab opens with an overview of Plex - click Got It
 3. An offer for Plex Pass opens - close out of it
 4. Server Setup
@@ -72,12 +61,21 @@ Return to Package Center. Click Plex's Repair button.
 6. Expand the left panel > More > click into one of your media folders
 7. Follow prompts to claim server
 
+Plex is also available at http://192.168.1.209:32400
+
+
+## XX Change the Default Port
+
+WIP 
+
+1. Plex > User > Account
+2. Left menu > Settings > Remote Access > Show Advanced
+3. Manually specify public port = True
+4. Port = 7032
+5. Apply
+
 
 ## Install Updates
-
-TODO
-
-## HTTPS
 
 TODO
 

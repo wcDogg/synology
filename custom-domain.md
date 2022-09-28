@@ -42,8 +42,7 @@ Prevents 'too many redirects' error once router's IP is proxied.
 
 ## Test HTTP Login with Domain
 
-Once the DNS records have propagated, try logging in using your domain name. 
+Once the DNS records have propagated, test logging in using http:site.com:port
 
-* http://site.com:7080
-* http://site.com:7043
+* See [Network Reference](network.md) for a running list of URLs
 

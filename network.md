@@ -42,6 +42,10 @@ site.com -> 192.168.1.209
 # DSM > Control Panel > Terminal & SNMP > Terminal tab
 7022 TCP    # NAS SSH 22
 
+# Plex
+32400 TCP   # Default
+# 7032 TCP    # Custom
+
 # Docker nas_network
 172.29.7.0/24     # Subnet
 172.29.7.1        # Gateway 
@@ -74,10 +78,7 @@ site.com -> 192.168.1.209
 
 172.29.7.8        # vaultwarden
   7880:80           # vaultwarden web UI
-
 ```
-
-
 
 ## Cloudflare DNS Records
 
@@ -100,12 +101,12 @@ CNAME vault   @
 
 ```bash
 dsm.site.com      https 192.168.1.209 7043
-pi.site.com       https pi-hole 7443
-# plex.site.com     https 192.168.1.209 32400
-port.site.com     https portainer 7643
-proxy.site.com    http  nginx-proxy 7281
-search.site.com   https searxng 7780
-vault.site.com    https vaultwarden 
+# pi.site.com       http 192.168.1.209 7480
+plex.site.com     https 192.168.1.209 32400
+port.site.com     https 192.168.1.209 7643
+# proxy.site.com    http  192.168.1.209 7281
+search.site.com   http 192.168.1.209 7780
+# vault.site.com    http 192.168.1.209 7880
 ```
 
 ## URL Progression
@@ -113,8 +114,66 @@ vault.site.com    https vaultwarden
 A running list of how URLs progress from port to domain to subdomain.
 
 ```bash
+#
+# DSM - DONE
+# 7080 should redirect to 7043
+http://192.168.1.209:7080 -->
+https://192.168.1.209:7043
 
+http://site.com:7080 -->
+https://site.com:7043
 
+http://dsm.site.com -->
+https://dsm.site.com
+
+#
+# NPM
+http://192.168.1.209:7281
+http://site.com:7281
+
+http://proxy.site.com - Congrats page, not login? 
+# https://proxy.site.com
+
+http://192.168.1.209:7281/nginx/proxy
+
+#
+# Pi-hole
+http://192.168.1.209:7480/admin
+http://site.com:7480/admin
+
+# http://192.168.1.209:7480/admin
+# http://site.com:7480/admin
+
+# http://pi.site.com/admin
+# https://pi.site.com/admin
+
+#
+# Portainer - DONE
+https://192.168.1.209:7643
+https://site.com:7643
+http://port.site.com
+https://port.site.com
+
+#
+# Plex - DONE
+http://192.168.1.209:32400
+http://site.com:32400
+http://plex.site.com
+https://plex.site.com
+
+#
+# Search - DONE
+http://192.168.1.209:7780
+http://site.com:7780
+http://search.site.com
+https://serach.site.com
+
+#
+# VaultWarden - DONE
+http://192.168.1.209:7880
+http://site.com:7880
+http://vault.site.com
+https://vault.site.com
 ```
 
 ## References

@@ -11,13 +11,14 @@ A technical writer's notes on setting up a Synology NAS and Docker network for s
 * [Install Portainer](portainer.md)
 * [Install NGINX Proxy Manager](nginx-install.md)
 * [Install SearXNG](searxng.md)
+* [Install VaultWarden](vaultwarden.md)
 * [Install Pi-hole and Unbound](pi-hole.md)
+* [Install Plex Media Server](plex.md)
 * [Custom Domain and Cloudflare Proxy](custom-domain.md)
 
 WIP
-
-* [SSL Certificates](ssl-certificates.md)
 * [Configure NGINX Proxy Manager](nginx-configure.md)
+* [SSL Certificates](ssl-certificates.md)
 * [Dynamic DNS](dynamic-dns.md)
 
 

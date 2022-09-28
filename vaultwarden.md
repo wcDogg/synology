@@ -1,4 +1,4 @@
-# Install Vaultwarden on Synology NAS
+# Install VaultWarden on Synology NAS
 
 
 ## Install
