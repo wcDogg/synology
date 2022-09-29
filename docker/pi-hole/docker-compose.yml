@@ -35,7 +35,7 @@ services:
       - 172.29.7.5  # Unbound IP
     environment:
       - WEBPASSWORD=${WEBPASSWORD}  # .env
-      - TZ= ${TZ}  # .env
+      - TZ=${TZ}  # .env
       - FTLCONF_LOCAL_IPV4=172.29.7.4      # Pi-hole IP
       - PIHOLE_DNS_=172.29.7.5;172.29.7.5  # Unbound IP x2
     volumes:
