@@ -58,25 +58,12 @@ docker-compose up -d
 ## Test Internally from SSH Shell
 
 ```bash
+# Status = NOERROR 
+
 # Unbound
-# Status = SERVFAIL
-dig sigfail.verteiltesysteme.net @192.168.1.209 -p 7453
-
-# Status = NOERROR 
-dig sigok.verteiltesysteme.net @192.168.1.209 -p 7453
-
-# Status = NOERROR 
 dig pi-hole.net @192.168.1.209 -p 7453
 
-
 # Pi-hole + Unbound
-# Status = SERVFAIL
-dig sigfail.verteiltesysteme.net @192.168.1.209 -p 7553
-
-# Status = NOERROR 
-dig sigok.verteiltesysteme.net @192.168.1.209 -p 7553
-
-# Status = NOERROR 
 dig pi-hole.net @192.168.1.209 -p 7553
 ```
 

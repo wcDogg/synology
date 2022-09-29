@@ -34,16 +34,14 @@ services:
       - 127.0.0.1   # lo inet
       - 172.29.7.5  # Unbound IP
     environment:
-      WEBPASSWORD: ${WEBPASSWORD}  # .env
-      TZ: ${TZ}             # .env
-      ServerIP: 172.29.7.4  # Pi-hole IP
-      DNS1: 172.29.7.5      # Unbound IP
-      DNS2: 172.29.7.5      # Twice else defaults to Google
+      - WEBPASSWORD=${WEBPASSWORD}  # .env
+      - TZ= ${TZ}  # .env
+      - FTLCONF_LOCAL_IPV4=172.29.7.4      # Pi-hole IP
+      - PIHOLE_DNS_=172.29.7.5;172.29.7.5  # Unbound IP x2
     volumes:
       - /volume1/docker/pi-hole/etc-pihole:/etc/pihole:rw
       - /volume1/docker/pi-hole/etc-dnsmasq.d:/etc/dnsmasq.d
       # - /volume1/docker/pi-hole/etc-pihole/pihole-FTL.conf:/etc/pihole/pihole-FTL.conf:ro
-
     networks:
       default:
         ipv4_address: 172.29.7.4
