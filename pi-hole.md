@@ -30,20 +30,18 @@ WEBPASSWORD="oectBU0UaOCga82KnoA5"
 curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/pi-hole/docker-compose.yml -o docker-compose.yml
 
 # Get pihole-FTL.conf
+cd etc-pihole
 
+curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/pi-hole/etc-pihole/pihole-FTL.conf -o pihole-FTL.conf
 
 # Get unbound.conf
 cd ..
-cd unbound
+cd etc-unbound
 
-curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/pi-hole/unbound/unbound.conf -o unbound.conf
-
-# Review compose file
-# Set server time zone and a strong password
-cd ..
-nano docker-compose.yml
+curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/pi-hole/etc-unbound/unbound.conf -o unbound.conf
 
 # Docker up
+cd ..
 docker-compose up -d
 ```
 
@@ -60,7 +58,6 @@ docker-compose up -d
 
 ```bash
 # Unbound
-
 # Status = SERVFAIL
 dig sigfail.verteiltesysteme.net @192.168.1.209 -p 7453
 
@@ -70,8 +67,8 @@ dig sigok.verteiltesysteme.net @192.168.1.209 -p 7453
 # Status = NOERROR 
 dig pi-hole.net @192.168.1.209 -p 7453
 
-# Pi-hole + Unbound
 
+# Pi-hole + Unbound
 # Status = SERVFAIL
 dig sigfail.verteiltesysteme.net @192.168.1.209 -p 7553
 
