@@ -29,16 +29,17 @@ WEBPASSWORD="oectBU0UaOCga82KnoA5"
 # Get docker-compose.yml
 curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/pi-hole/docker-compose.yml -o docker-compose.yml
 
-# Get pihole-FTL.conf
-cd etc-pihole
-
-curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/pi-hole/etc-pihole/pihole-FTL.conf -o pihole-FTL.conf
-
 # Get unbound.conf
-cd ..
 cd etc-unbound
 
 curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/pi-hole/etc-unbound/unbound.conf -o unbound.conf
+
+# # Get pihole-FTL.conf
+cd ..
+# cd etc-pihole
+
+# curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/pi-hole/etc-pihole/pihole-FTL.conf -o pihole-FTL.conf
+
 
 # Docker up
 cd ..
