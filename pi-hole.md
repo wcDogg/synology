@@ -1,5 +1,7 @@
 # Install Pi-hole and Unbound on Synology NAS
 
+A Synology-specific version of [chriscrowe/docker-pihole-unbound](https://github.com/chriscrowe/docker-pihole-unbound/tree/main/two-container)
+
 
 ## Install
 
@@ -12,16 +14,26 @@ password
 cd /volume1/docker
 
 # Create volumes
-mkdir -p pi-hole/unbound
 mkdir -p pi-hole/etc-pihole
 mkdir -p pi-hole/etc-dnsmasq.d
+mkdir -p pi-hole/etc-unbound
 
-# Get compose file
+# Create .env file
 cd pi-hole
+nano .env
 
+# Add these lines to .env
+TZ="America/New_York"
+WEBPASSWORD="oectBU0UaOCga82KnoA5"
+
+# Get docker-compose.yml
 curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/pi-hole/docker-compose.yml -o docker-compose.yml
 
-# Get conf file
+# Get pihole-FTL.conf
+
+
+# Get unbound.conf
+cd ..
 cd unbound
 
 curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/pi-hole/unbound/unbound.conf -o unbound.conf

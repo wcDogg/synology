@@ -11,7 +11,7 @@ services:
     hostname: "unbound"
     restart: unless-stopped
     volumes:
-      - /volume1/docker/pi-hole/unbound/:/opt/unbound/etc/unbound/
+      - /volume1/docker/pi-hole/etc-unbound/:/opt/unbound/etc/unbound/
     ports:
       - "7553:53/tcp"   # DNS traffic - unbound.conf
       - "7553:53/udp"   # DNS traffic - unbound.conf
@@ -30,18 +30,20 @@ services:
       - "7453:53/udp"   # DNS traffic
       - "7480:80/tcp"   # Web UI
       - "7443:443/tcp"  # Web UI
-    dns:
+    dns: # resolve.conf
       - 127.0.0.1   # lo inet
       - 172.29.7.5  # Unbound IP
     environment:
-      WEBPASSWORD: "oectBU0UaOCga82KnoA5"  # ⚠️ A strong PW
-      TZ: "America/New_York"   # ⚠️ Server time zone
-      ServerIP: 172.29.7.4     # Pi-hole IP
-      DNS1: 172.29.7.5         # Unbound IP
-      DNS2: 172.29.7.5         # Twice else defaults to Google
+      WEBPASSWORD: ${WEBPASSWORD}  # .env
+      TZ: ${TZ}             # .env
+      ServerIP: 172.29.7.4  # Pi-hole IP
+      DNS1: 172.29.7.5      # Unbound IP
+      DNS2: 172.29.7.5      # Twice else defaults to Google
     volumes:
-      - /volume1/docker/pi-hole/etc-pihole/:/etc/pihole/
+      - /volume1/docker/pi-hole/etc-pihole/:/etc/pihole:rw
+      - /volume1/docker/pi-hole/etc-pihole/pihole-FTL.conf:/etc/pihole/pihole-FTL.conf:ro
       - /volume1/docker/pi-hole/etc-dnsmasq.d/:/etc/dnsmasq.d/
+
     networks:
       default:
         ipv4_address: 172.29.7.4
