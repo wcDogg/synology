@@ -34,17 +34,23 @@ cd etc-unbound
 
 curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/pi-hole/etc-unbound/unbound.conf -o unbound.conf
 
-# # Get pihole-FTL.conf
-cd ..
-# cd etc-pihole
-
-# curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/pi-hole/etc-pihole/pihole-FTL.conf -o pihole-FTL.conf
-
-
 # Docker up
 cd ..
 docker-compose up -d
 ```
+
+## Fix
+
+```bash
+[1664441915] unbound[1:0] warning: so-rcvbuf 1048576 was not granted. Got 425984. To fix: start with root permissions(linux) or sysctl bigger net.core.rmem_max(linux) or kern.ipc.maxsockbuf(bsd) values.
+
+[1664441915] unbound[1:0] error: Could not open logfile /dev/null: Permission denied
+
+/etc/apparmor.d/local/usr.sbin.unbound
+
+/var/log/unbound/unbound.log rw,
+```
+
 
 ## Sign In
 
