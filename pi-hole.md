@@ -10,17 +10,16 @@ A Synology-specific version of [chriscrowe/docker-pihole-unbound](https://github
 sudo -i
 password
 
-# From / create Unbound log directory
-mkdir -p /var/log/unbound
-chown unbound:unbound /var/log/unbound
+# Go here and make this dir
+cd /var/log
+mkdir unbound
 
-# Go here
+# Go here and make these dirs
 cd /volume1/docker
-
-# Create volumes
 mkdir -p pi-hole/etc-pihole
 mkdir -p pi-hole/etc-dnsmasq.d
 mkdir -p pi-hole/etc-unbound
+mkdir -p pi-hole/var-unbound
 
 # Create .env file
 cd pi-hole
@@ -38,9 +37,28 @@ cd etc-unbound
 
 curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/pi-hole/etc-unbound/unbound.conf -o unbound.conf
 
+# Create log file
+cd ..
+cd var-unbound
+touch unbound.log
+
 # Docker up
 cd ..
 docker-compose up -d
+```
+
+## Log Permissions
+
+```bash
+# Go here
+DSM > Docker > Containers > Unbound > Details > Logs
+
+# Note this error
+
+
+# To fix
+cd /
+chown unbound:unbound /var/log/unbound
 ```
 
 ## Fix
