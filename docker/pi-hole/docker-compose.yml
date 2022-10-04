@@ -11,7 +11,7 @@ services:
     hostname: "unbound"
     restart: unless-stopped
     volumes:
-      - /volume1/docker/pi-hole/unbound:/opt/unbound/etc/unbound:rw
+      - /volume1/docker/pi-hole/etc-unbound:/etc/unbound:rw
 
     ports:
       - "7553:53/tcp"   # DNS traffic - unbound.conf
@@ -40,8 +40,8 @@ services:
       - FTLCONF_LOCAL_IPV4=172.29.7.4      # Pi-hole IP
       - PIHOLE_DNS_=172.29.7.5;172.29.7.5  # Unbound IP x2
     volumes:
-      - /volume1/docker/pi-hole/pihole:/etc/pihole:rw
-      - /volume1/docker/pi-hole/dnsmasq.d:/etc/dnsmasq.d
+      - /volume1/docker/pi-hole/etc-pihole:/etc/pihole:rw
+      - /volume1/docker/pi-hole/etc-dnsmasq.d:/etc/dnsmasq.d
       # - /volume1/docker/pi-hole/pihole/pihole-FTL.conf:/etc/pihole/pihole-FTL.conf:ro
     networks:
       default:
