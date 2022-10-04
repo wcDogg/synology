@@ -34,9 +34,6 @@ cd unbound
 
 curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/pi-hole/etc-unbound/unbound.conf -o unbound.conf
 
-# Add a log file
-touch unbound.log
-
 # Docker up
 cd ..
 docker-compose up -d
