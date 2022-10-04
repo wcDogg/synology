@@ -14,7 +14,7 @@ password
 cd /volume1/docker
 
 # Create volumes
-mkdir -p pi-hole/pi-hole
+mkdir -p pi-hole/pihole
 mkdir -p pi-hole/dnsmasq.d
 mkdir -p pi-hole/unbound
 
