@@ -10,6 +10,10 @@ A Synology-specific version of [chriscrowe/docker-pihole-unbound](https://github
 sudo -i
 password
 
+# From / create Unbound log directory
+mkdir -p /var/log/unbound
+chown unbound:unbound /var/log/unbound
+
 # Go here
 cd /volume1/docker
 
@@ -42,13 +46,13 @@ docker-compose up -d
 ## Fix
 
 ```bash
-[1664441915] unbound[1:0] warning: so-rcvbuf 1048576 was not granted. Got 425984. To fix: start with root permissions(linux) or sysctl bigger net.core.rmem_max(linux) or kern.ipc.maxsockbuf(bsd) values.
+[1664918574] unbound[1:0] error: Could not open logfile /dev/null: Permission denied
 
-[1664441915] unbound[1:0] error: Could not open logfile /dev/null: Permission denied
+mkdir -p /var/log/unbound
+chown unbound:unbound /var/log/unbound
 
-/etc/apparmor.d/local/usr.sbin.unbound
-
-/var/log/unbound/unbound.log rw,
+touch /var/log/unbound
+chown unbound:unbound /var/log/unbound
 ```
 
 
