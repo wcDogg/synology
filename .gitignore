@@ -1,6 +1,7 @@
 # Ignore sensitive files
 .env*
 ssl-certs
+plex-file-names
 
 # Ignore VS Code
 .vscode
