@@ -11,7 +11,9 @@ services:
     hostname: "unbound"
     restart: unless-stopped
     volumes:
-      - /volume1/docker/pi-hole/etc-unbound:/opt/unbound/etc/unbound:rw
+      - /volume1/docker/pi-hole/unbound:/opt/unbound/etc/unbound:rw
+      - /volume1/docker/pi-hole/unbound/unbound.log:/var/log/unbound/unbound.log
+
     ports:
       - "7553:53/tcp"   # DNS traffic - unbound.conf
       - "7553:53/udp"   # DNS traffic - unbound.conf

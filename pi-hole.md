@@ -14,9 +14,9 @@ password
 cd /volume1/docker
 
 # Create volumes
-mkdir -p pi-hole/etc-pihole
-mkdir -p pi-hole/etc-dnsmasq.d
-mkdir -p pi-hole/etc-unbound
+mkdir -p pi-hole/pi-hole
+mkdir -p pi-hole/dnsmasq.d
+mkdir -p pi-hole/unbound
 
 # Create .env file
 cd pi-hole
@@ -30,9 +30,12 @@ WEBPASSWORD="oectBU0UaOCga82KnoA5"
 curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/pi-hole/docker-compose.yml -o docker-compose.yml
 
 # Get unbound.conf
-cd etc-unbound
+cd unbound
 
 curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/pi-hole/etc-unbound/unbound.conf -o unbound.conf
+
+# Add a log file
+touch unbound.log
 
 # Docker up
 cd ..
