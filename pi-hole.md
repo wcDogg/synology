@@ -10,16 +10,11 @@ A Synology-specific version of [chriscrowe/docker-pihole-unbound](https://github
 sudo -i
 password
 
-# Go here and make this dir
-cd /var/log
-mkdir unbound
-
 # Go here and make these dirs
 cd /volume1/docker
 mkdir -p pi-hole/etc-pihole
 mkdir -p pi-hole/etc-dnsmasq.d
-mkdir -p pi-hole/etc-unbound
-mkdir -p pi-hole/var-unbound
+# mkdir -p pi-hole/etc-unbound
 
 # Create .env file
 cd pi-hole
@@ -32,15 +27,10 @@ WEBPASSWORD="oectBU0UaOCga82KnoA5"
 # Get docker-compose.yml
 curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/pi-hole/docker-compose.yml -o docker-compose.yml
 
-# Get unbound.conf
-cd etc-unbound
+# # Get unbound.conf
+# cd etc-unbound
 
-curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/pi-hole/etc-unbound/unbound.conf -o unbound.conf
-
-# Create log file
-cd ..
-cd var-unbound
-touch unbound.log
+# curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/pi-hole/etc-unbound/unbound.conf -o unbound.conf
 
 # Docker up
 cd ..
@@ -54,7 +44,7 @@ docker-compose up -d
 DSM > Docker > Containers > Unbound > Details > Logs
 
 # Note this error
-
+[1664924122] unbound[1:0] error: Could not open logfile /dev/null: Permission denied
 
 # To fix
 cd /
