@@ -2,8 +2,6 @@
 
 A technical writer's notes on setting up a Synology NAS and Docker network for secure access from anywhere. 
 
-## First Steps
-
 * [Network Reference](network.md)
 * [DSM 7 Setup](nas-setup.md)
 * [SSH to Synology NAS](openSSH.md)
@@ -17,9 +15,4 @@ A technical writer's notes on setting up a Synology NAS and Docker network for s
 * [Custom Domain and Cloudflare Proxy](custom-domain.md)
 * [SSL Certificates + Proxy Hosts](ssl-certificates.md)
 * [Dynamic DNS](dynamic-dns.md)
-
-
-## Other Topics
-
-* [Reinstall DSM 7](reinstall-dsm.md)
 

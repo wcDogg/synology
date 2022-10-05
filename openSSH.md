@@ -138,6 +138,14 @@ ssh -i ~/.ssh/wcd_nas_rsa4096 wcdogg@192.168.1.209 -p7022
 **You can stop here.** The remaining steps are for adding your key to Windows Security Context so you don't have to pass in the key file.
 
 
+## How to Transfer Files
+
+```bash
+# Folder from NAS to PC
+scp -r "2004 Christmas" wcd@192.168.1.208:d:/Photos
+```
+
+
 ## Windows: Add Private Key to Windows Security Context
 
 In a second PowerShell as admin:
