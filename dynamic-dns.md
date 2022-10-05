@@ -15,17 +15,19 @@ Most home routers are assigned a dynamic IP address - meaning it can change at a
 6. Zone Resources = Include - All Zones
 7. Continue to Summary. Create Token.
 8. Copy token to a password manager
-9. Use the on-screen command to test
+
+Use the on-screen command to test the token. It looks like this where Bearer = token: 
 
 ```bash
 curl -X GET "https://api.cloudflare.com/client/v4/user/tokens/verify" -H "Authorization: Bearer cfAPItokenHERE" -H "Content-Type:application/json"
 ```
 
-## Portainer
+## TODO: Docker Container
+
+
 
 ## References
 
 * [Cloudflare: Use Dynamic IP Addresses](https://developers.cloudflare.com/dns/manage-dns-records/how-to/managing-dynamic-ip-addresses/)
 * https://www.youtube.com/watch?v=Nf7m3h11y-s
-
 
