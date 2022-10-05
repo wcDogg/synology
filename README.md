@@ -15,7 +15,7 @@ A technical writer's notes on setting up a Synology NAS and Docker network for s
 * [Install Pi-hole and Unbound](pi-hole.md)
 * [Install Plex Media Server](plex.md)
 * [Custom Domain and Cloudflare Proxy](custom-domain.md)
-* [SSL Certificates](ssl-certificates.md)
+* [SSL Certificates + Proxy Hosts](ssl-certificates.md)
 * [Dynamic DNS](dynamic-dns.md)
 
 

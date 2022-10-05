@@ -2,7 +2,7 @@ general:
   # Dev only
   debug: false
   # Browser tab title
-  instance_name: "searxng"
+  instance_name: "SearXNG"
   # Disable this stuff
   privacypolicy_url: false
   donation_url: false

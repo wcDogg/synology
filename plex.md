@@ -64,9 +64,7 @@ Temporarily open port 32400 TCP on NAS firewall - changed later from Plex's adva
 Plex is also available at http://192.168.1.209:32400
 
 
-## XX Change the Default Port
-
-WIP 
+## TODO Change the Default Port
 
 1. Plex > User > Account
 2. Left menu > Settings > Remote Access > Show Advanced
@@ -75,7 +73,7 @@ WIP
 5. Apply
 
 
-## Install Updates
+## TODO Install Updates
 
 TODO
 

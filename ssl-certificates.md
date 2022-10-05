@@ -1,4 +1,6 @@
-# SSL Certificates
+# SSL Certificates and Proxy Hosts
+
+How to create secure URLs - like https://dsm.site.com - to access NAS services. 
 
 
 ## NAS SSL Certificate
@@ -39,9 +41,19 @@ For subdomains to work, change your router's port forwarding rules from the NAS 
 443 TCP 192.168.1.209 7243
 ```
 
-## NGINX SSL Certificate + Proxy Host
+## About SSL Certs + Proxy Hosts
 
-When a container has a related server, you must obtain the SSL certificate and create the proxy host in 2 separate steps. For example, NGINX Proxy Manager uses a database server and Pi-hole uses a web server.
+There are 2 ways to obtain SSL certificates in NGINX Proxy Manager:
+
+* A 2-step process where the SSL cert is obtained separate from creating the proxy host.
+* A 1-step process where the SSL cert is obtained while creating the proxy host. 
+
+Interestingly, all services can be configured using the 2-step process and some MUST be - ie NGINX and Pi-hole. I'm not sure why - perhaps because these use additional servers? 
+
+The [Network Reference](network.md) has a running list of proxy hosts and their configuration. 
+
+
+## NGINX SSL Certificate + Proxy Host
 
 This step obtains an SSL Certificate for NPM.
 
@@ -49,7 +61,7 @@ This step obtains an SSL Certificate for NPM.
 2. SSL Certificates > Add Certificate > Let's Encrypt
    1. Domain Names = proxy.site.com
    2. Test Server Availability
-   3. Email = <email>
+   3. Email = your@email.com
    4. Agree = True
    5. Save
 
@@ -73,33 +85,18 @@ Confirm you can sign in to NPM at https://proxy.site.com.
 
 ## Pi-hole SSL Certificate + Proxy Host
 
-Set up Pi-hole in the same way as NPM - first get the SSL cert:
+Set up Pi-hole in the same way as NPM.
 
-1. NGINX > SSL Certificates > Add Certificate > Let's Encrypt
-   1. Domain Names = pi.site.com
-   2. Email = <email>
-   3. Agree = True
-   4. Save
-
-Then create the proxy host:
-
-1. NGINX > Dashboard > Proxy Hosts > Add Proxy Host
-2. Details tab
-   1. pi.site.com http 192.168.1.209 7480
-   2. Cache Assets = False
-   3. Block Common Exploits = True
-   4. Websockets Support = False
-3. SSL tab
-   1. Use dropdown to select the pi.site.com certificate
-   2. Force SSL = True
-   3. Done
+1. Obtain SSL certificate for pi.site.com
+2. Add proxy host: pi.site.com http 192.168.1.209 7480
+3. Attach SSL to proxy
 
 Confirm you can sign in at https://pi.site.com/admin
 
 
-## Other Subdomain Proxy Hosts
+## SSL + Proxy Host in a Single Step
 
-For many services, you can create the proxy host and obtain an SSL certificate in a single step. See [Network Reference](network.md) for running list of proxies that can be configured this way.
+With many services you can create the proxy host and obtain an SSL certificate in a single step. See [Network Reference](network.md) for running list of proxies that can be configured this way.
 
 1. NGINX > Dashboard > Proxy Hosts > Add Proxy Host
 2. Details tab
@@ -109,7 +106,7 @@ For many services, you can create the proxy host and obtain an SSL certificate i
 3. SSL tab  
    1. Use the dropdown to select Request New Certificate
    2. Force SSL = True
-   3. Email = <email>
+   3. Email = your@email.com
    4. Agree = True
    5. Done
 
@@ -118,7 +115,9 @@ Confirm you can access your subdomains as expected - [Network Reference](network
 Confirm you can create a VaultWarden account.
 
 
-## Cloudflare Proxy Router IP
+## Cloudflare: Proxy Router IP
+
+Once you have HTTPS access to all of your subdomains, it's time to hide your router's public IP address by enabling Cloudflare's proxy. 
 
 Before starting, do a [domain lookup](https://mxtoolbox.com/DNSLookup.aspx) for your site.com - note it shows your router's IP address.
 

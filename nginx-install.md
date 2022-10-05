@@ -37,7 +37,7 @@ docker-compose up -d
 
 ## Sign In
 
-1. Sign in at the NAS static IP on port 8181 - http://192.168.1.209:7281 
+1. Sign in at the NAS static IP on port 7281 - http://192.168.1.209:7281 
    1. UN default = admin@example.com
    2. PW default = changeme
 2. Follow prompts to change credentials

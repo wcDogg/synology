@@ -16,7 +16,7 @@ cd /volume1/docker
 # Create volumes
 mkdir searxng
 
-# Get compose file
+# Get files
 cd searxng
 
 curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/searxng/docker.compose.yml -o docker-compose.yml

@@ -183,7 +183,6 @@ Sign in to DSM from: http://192.168.1.209:7043
 TODO: https://www.youtube.com/watch?v=wXCYEby3FJ8
 
 
-
 ## Add the SynoCommunity Repo
 
 1. DSM > Package Center 
@@ -215,7 +214,7 @@ mdig, sshfs, ser2net
 
 ## Initial NAS Firewall Rules
 
-* Open all ports listed here:  [NAS and Docker nas_network](network.md) 
+* Open all ports listed here:  [NAS and Docker nas_network](network.md/#nas-and-docker-nasnetwork) 
 * Docker ports are given like `7243:443` = NAS port : Docker port
 * Open the NAS ports - not the Docker ports
 
