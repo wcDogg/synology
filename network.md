@@ -21,10 +21,10 @@ site.com -> 192.168.1.209
 # Port forwarding to NAS during config
 # Advanced > Security & Firewall > Port Forwarding
 # Origin port - Protocol - NAS IP - NAS port
-53  UDP 192.168.1.209 53
-53  TCP 192.168.1.209 53
 80  TCP 192.168.1.209 80
 443 TCP 192.168.1.209 443
+# 53  UDP 192.168.1.209 53
+# 53  TCP 192.168.1.209 53
 
 # # Port forwarding once NAS is configured
 # 80  TCP 192.168.1.209 7080
@@ -56,7 +56,6 @@ site.com -> 192.168.1.209
 # Docker nas_network
 172.29.7.0/24     # Subnet
 172.29.7.1        # Gateway 
-
 
 172.29.7.2        # nginx-proxy
   7243:443 TCP      # nginx-proxy HTTPS
@@ -108,11 +107,14 @@ CNAME vault   @
 ## NGINX Proxy Hosts
 
 ```bash
+# Get SSL separate from creating proxy host
+proxy.site.com    http  192.168.1.209 7281
+pi.site.com       http 192.168.1.209 7480
+
+# Okay to get SSL while creating proxy host
 dsm.site.com      https 192.168.1.209 7043
-# pi.site.com       http 192.168.1.209 7480
 plex.site.com     https 192.168.1.209 32400
 port.site.com     https 192.168.1.209 7643
-# proxy.site.com    http  192.168.1.209 7281
 search.site.com   http 192.168.1.209 7780
 vault.site.com    http 192.168.1.209 7880
 ```
@@ -135,15 +137,15 @@ http://dsm.site.com -->
 https://dsm.site.com
 
 #
-# NPM
+# NPM - DONE
 http://192.168.1.209:7281
 http://site.com:7281
 
-http://proxy.site.com - Congrats page, not login? 
-# https://proxy.site.com
+http://proxy.site.com   # Un-proxied Congrats page
+https://proxy.site.com  # Proxied web UI
 
 #
-# Pi-hole
+# Pi-hole - DONE
 http://192.168.1.209:7480/admin
 http://site.com:7480/admin
 
@@ -151,7 +153,7 @@ http://site.com:7480/admin
 # http://site.com:7480/admin
 
 # http://pi.site.com/admin
-# https://pi.site.com/admin
+https://pi.site.com/admin
 
 #
 # Portainer - DONE

@@ -61,20 +61,24 @@ DSM > Docker > Containers > Unbound > Details > Logs
 At this point, all of these should work: 
 
 ```bash
-# Unbound
+# Unbound Docker container
 ping 172.29.7.5
 nslookup pi-hole.net 172.29.7.5
+dig pi-hole.net @172.29.7.5 -p 53
+# Unbound NAS port
 nslookup -port=7453 pi-hole.net 192.168.1.209
 dig pi-hole.net @192.168.1.209 -p 7453
 
-# Pi-hole + Unbound
+# Pi-hole Docker Container
 ping 172.29.7.4
-nslookup pi-hole.net 172.29.7.4
-dig pi-hole.net @192.168.1.209 -p 7553
+nslookup -port=53 pi-hole.net 172.29.7.4
+dig pi-hole.net @172.29.7.4 -p 53
+# Pi-hole NAS port
 nslookup -port=7553 pi-hole.net 192.168.1.209
+dig pi-hole.net @192.168.1.209 -p 7553
 ```
 
-## Synology DNS
+## XX - Synology DNS
 
 1. DSM > Control Panel > Network > General
 2. Manually Configure DNS Server = True
@@ -92,6 +96,8 @@ nslookup pi-hole.net
 
 ```bash
 nslookup pi-hole.net 192.168.1.209
+
+nslookup pi-hole.net pi.wcd.black
 
 # Unbound
 nslookup -port=7453 pi-hole.net 192.168.1.209

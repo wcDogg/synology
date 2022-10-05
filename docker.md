@@ -1,7 +1,7 @@
 # Install Docker on Synology NAS and Create Docker Network
 
 
-## Install
+## Install Docker
 
 1. Install from DSM > Package Center
 2. A `/volume1/docker` directory is auto-created
@@ -29,16 +29,18 @@ sudo docker info
 docker ps
 ```
 
-## About Docker Network
-
+## About Docker nas_network
 
 * The purpose of this network is to avoid port conflicts between the NAS and Docker containers. 
 * All Docker containers are added to this network.
 * Each container is given a static IP on this network via its `docker-compose.yml`.
-* This way, containers that need to communicate with each other - ie Pi-hole and Unbound - don't need a macvlan or bridge. 
-* Containers can be access directly by clients on the network without NAT translation or port forwarding - ie, Pi-hole can be reached directly at [TODO]
+* Containers that need to communicate with each other - ie Pi-hole and Unbound - do NOT need a macvlan or bridge. 
+
 
 **IMPORTANT** All Docker compose files assume this exact network. See [Network Reference: Docker nas_network](network.md) for a running list of containers in this project.
+
+
+## Create nas_network
 
 ```bash
 # Create Network

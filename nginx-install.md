@@ -41,12 +41,6 @@ docker-compose up -d
    1. UN default = admin@example.com
    2. PW default = changeme
 2. Follow prompts to change credentials
-3. MariaDB
-   1. http://192.168.1.209:7333
-   2. UN default = npm
-   3. PW default = ZM2dc4sPeEKzJJv8m062yzUZAH
-   4. Root PW default = LQPmKlDAqzyhMHEbh8Iguj1dVx
-
 
 ## References
 
