@@ -16,13 +16,19 @@ mkdir -p nginx-proxy/data
 mkdir -p nginx-proxy/lets-encrypt
 mkdir -p nginx-mariadb
 
-# Get compose file
+# Create .env file
 cd nginx-proxy
+nano .env
 
+# Add this to file - set strong passwords!
+MYSQL_USER="npm"
+MYSQL_PASSWORD="changeme"
+MYSQL_ROOT_PASSWORD="changemeroot"
+
+# Get compose file
 curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/nginx-proxy/docker-compose.yml -o docker-compose.yml
 
 # Review compose file
-# Set strong passwords!!!
 nano docker-compose.yml
 
 # Docker up

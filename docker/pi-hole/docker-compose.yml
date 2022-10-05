@@ -12,6 +12,7 @@ services:
     restart: unless-stopped
     # volumes:
     #   - /volume1/docker/pi-hole/etc-unbound:/etc/unbound:rw
+    # /opt/unbound/etc/unbound
     ports:
       - "7553:53/tcp"   # DNS traffic - unbound.conf
       - "7553:53/udp"   # DNS traffic - unbound.conf

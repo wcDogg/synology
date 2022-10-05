@@ -29,7 +29,7 @@ docker-compose up -d
 
 ## View Site
 
-You will not be able to log in until an SSL certificate is added, but the login screen should be available: 
+You will not be able to create an account until an SSL certificate is added, but the Log In screen should be available: 
 
 * http://192.168.1.209:7880
 

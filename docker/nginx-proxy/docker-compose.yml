@@ -18,8 +18,8 @@ services:
       DB_MYSQL_HOST: "nginx-mariadb" 
       DB_MYSQL_PORT: 7333 
       DB_MYSQL_NAME: "nginx-db"
-      DB_MYSQL_USER: "npm"  # ⚠️ Match MYSQL_USER
-      DB_MYSQL_PASSWORD: "ZM2dc4sPeEKzJJv8m062yzUZAH" # ⚠️ Match MYSQL_PASSWORD
+      DB_MYSQL_USER: ${MYSQL_USER}  # .env
+      DB_MYSQL_PASSWORD: ${MYSQL_PASSWORD}  # .env
       # Uncomment this if IPv6 is not enabled on your host
       # DISABLE_IPV6: "true"
     volumes:
@@ -40,9 +40,9 @@ services:
       MYSQL_DATABASE: "nginx-db"
       MYSQL_TCP_PORT: 7333
       MYSQL_UNIX_PORT: 7333
-      MYSQL_USER: "npm"  # ⚠️ Match DB_MYSQL_USER
-      MYSQL_PASSWORD: "ZM2dc4sPeEKzJJv8m062yzUZAH"      # ⚠️ Match DB_MYSQL_PASSWORD
-      MYSQL_ROOT_PASSWORD: "LQPmKlDAqzyhMHEbh8Iguj1dVx" # ⚠️ Root PW
+      MYSQL_USER: ${MYSQL_USER}  # .env
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}  # .env
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}  # .env
     volumes:
       - /volume1/docker/nginx-mariadb:/var/lib/mysql
     networks:

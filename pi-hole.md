@@ -37,7 +37,7 @@ cd ..
 docker-compose up -d
 ```
 
-## Log Permissions
+## TODO: Log Permissions
 
 ```bash
 # Go here
@@ -45,29 +45,12 @@ DSM > Docker > Containers > Unbound > Details > Logs
 
 # Note this error
 [1664924122] unbound[1:0] error: Could not open logfile /dev/null: Permission denied
-
-# To fix
-cd /
-chown unbound:unbound /var/log/unbound
 ```
-
-## Fix
-
-```bash
-[1664918574] unbound[1:0] error: Could not open logfile /dev/null: Permission denied
-
-mkdir -p /var/log/unbound
-chown unbound:unbound /var/log/unbound
-
-touch /var/log/unbound
-chown unbound:unbound /var/log/unbound
-```
-
 
 ## Sign In
 
 1. http://192.168.1.209:7480/admin
-2. Default PW = oectBU0UaOCga82KnoA5
+2. PW = what you set in .env file
 3. Go to Settings > DNS. Note that:
    1. Upstream DNS Servers = 172.29.7.5 (Unbound)
    2. Interface Settings = Respond only on eth0
@@ -75,23 +58,49 @@ chown unbound:unbound /var/log/unbound
 
 ## Test Internally from SSH Shell
 
-```bash
-# Status = NOERROR 
+At this point, all of these should work: 
 
+```bash
 # Unbound
+ping 172.29.7.5
+nslookup pi-hole.net 172.29.7.5
+nslookup -port=7453 pi-hole.net 192.168.1.209
 dig pi-hole.net @192.168.1.209 -p 7453
 
 # Pi-hole + Unbound
+ping 172.29.7.4
+nslookup pi-hole.net 172.29.7.4
 dig pi-hole.net @192.168.1.209 -p 7553
+nslookup -port=7553 pi-hole.net 192.168.1.209
+```
+
+## Synology DNS
+
+1. DSM > Control Panel > Network > General
+2. Manually Configure DNS Server = True
+   1. Preferred = Pi-hole IP = 172.29.7.4
+   2. Remove Alt = blank
+3. Apply
+
+The following should now work - no port or server needed.
+
+```bash
+nslookup pi-hole.net
 ```
 
 ## Test Externally from a Separate Command Line
 
 ```bash
+nslookup pi-hole.net 192.168.1.209
+
 # Unbound
 nslookup -port=7453 pi-hole.net 192.168.1.209
+nslookup pi-hole.net 172.29.7.5
 
 # Pi-hole + Unbound
 nslookup -port=7553 pi-hole.net 192.168.1.209
+nslookup pi-hole.net 172.29.7.4
+
+
 ```
 

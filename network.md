@@ -6,12 +6,13 @@
 * Port Check: https://www.portchecktool.com/
 
 ```bash
-# NAS static IP
-# Advanced > Network Settings > IPv4 Address Distribution
-192.168.1.209
+# LAN
+192.168.1.0/24  # Subnet
+192.198.1.1     # Default Gateway
 
-# Computer static IP
-192.168.1.208
+# Static IPs
+# Advanced > Network Settings > IPv4 Address Distribution
+192.168.1.209   # NAS
 
 # Point TLD at NAS static IP
 # Advanced > Network Settings > DNS Server
@@ -20,12 +21,14 @@ site.com -> 192.168.1.209
 # Port forwarding to NAS during config
 # Advanced > Security & Firewall > Port Forwarding
 # Origin port - Protocol - NAS IP - NAS port
+53  UDP 192.168.1.209 53
+53  TCP 192.168.1.209 53
 80  TCP 192.168.1.209 80
 443 TCP 192.168.1.209 443
 
-# Port forwarding once NAS is configured
-80  TCP 192.168.1.209 7080
-443 TCP 192.168.1.209 7043
+# # Port forwarding once NAS is configured
+# 80  TCP 192.168.1.209 7080
+# 443 TCP 192.168.1.209 7043
 
 # Port forwarding to NGINX 
 80  TCP 192.168.1.209 7280
@@ -53,6 +56,7 @@ site.com -> 192.168.1.209
 # Docker nas_network
 172.29.7.0/24     # Subnet
 172.29.7.1        # Gateway 
+
 
 172.29.7.2        # nginx-proxy
   7243:443 TCP      # nginx-proxy HTTPS

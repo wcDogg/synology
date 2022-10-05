@@ -29,12 +29,14 @@ sudo docker info
 docker ps
 ```
 
-## Create a Docker Network
+## About Docker Network
 
+
+* The purpose of this network is to avoid port conflicts between the NAS and Docker containers. 
 * All Docker containers are added to this network.
 * Each container is given a static IP on this network via its `docker-compose.yml`.
-* Simplifies containers that need to communicate with each other. For example, Pi-hole and Unbound don't need a macvlan or bridge.
-* When configuring NGINX proxy hosts, we can reference a container's hostname vs an IP address.
+* This way, containers that need to communicate with each other - ie Pi-hole and Unbound - don't need a macvlan or bridge. 
+* Containers can be access directly by clients on the network without NAT translation or port forwarding - ie, Pi-hole can be reached directly at [TODO]
 
 **IMPORTANT** All Docker compose files assume this exact network. See [Network Reference: Docker nas_network](network.md) for a running list of containers in this project.
 

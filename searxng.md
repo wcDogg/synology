@@ -28,7 +28,6 @@ curl -f https://raw.githubusercontent.com/wcDogg/synology/main/docker/searxng/se
 nano docker-compose.yml
 
 # Review settings file
-# Most common changes are at top
 nano settings.yml
 
 # Docker up
