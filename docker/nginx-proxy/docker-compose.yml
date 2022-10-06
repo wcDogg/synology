@@ -3,7 +3,7 @@ version: "2"
 networks:
   default:
     name: nas_network
-
+    
 services:
   nginx-proxy:
     image: "jc21/nginx-proxy-manager:latest"

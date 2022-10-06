@@ -23,8 +23,6 @@ site.com -> 192.168.1.209
 # Origin port - Protocol - NAS IP - NAS port
 80  TCP 192.168.1.209 80
 443 TCP 192.168.1.209 443
-# 53  UDP 192.168.1.209 53
-# 53  TCP 192.168.1.209 53
 
 # # Port forwarding once NAS is configured
 # 80  TCP 192.168.1.209 7080
@@ -63,18 +61,17 @@ site.com -> 192.168.1.209
   7281:81 TCP       # nginx-proxy web UI
 172.29.7.3        # nginx-mariadb
   7333 TCP          # nginx-mariadb internal
-
   80 TCP            # Let's Encrypt  
   443 TCP           # Let's Encrypt
 
 172.29.7.4        # pi-hole server
-  7453:53/tcp       # pi-hole DNS
-  7453:53/udp       # pi-hole DNS
-  7480:80/tcp       # pi-hole web UI HTTP
-  7443:443/tcp      # pi-hole web UI HTTPS
+  7453:53 TCP       # pi-hole DNS
+  7453:53 UDP       # pi-hole DNS
+  7480:80 TCP       # pi-hole web UI HTTP
 172.29.7.5        # unbound server
-  7553:53/tcp       # DNS traffic
-  7553:53/udp       # DNS traffic
+  7553:53 TCP       # unbound DNS
+  7553:53 UDP       # unbound DNS
+
 
 172.29.7.6        # portainer
   7680:8000 TCP     # portainer edge agents
@@ -85,6 +82,25 @@ site.com -> 192.168.1.209
 
 172.29.7.8        # vaultwarden
   7880:80           # vaultwarden web UI
+
+
+# Docker pi_macvlan
+# Look at your router and identify 4 sequential IP addresses not in use. 
+# I have 192.168.1.216 - 219 available
+# In the Docker command to create pi_macvlan,
+# we use the second available IP as follows: 
+192.168.1.217/30 
+
+# The /30 gives us 2 usable IPs on the LAN, but occupies 4 IPs
+192.168.1.216     # Network = Pi-hole will default to this
+  7453:53 TCP       # pi-hole DNS
+  7453:53 UDP       # pi-hole DNS
+  7480:80 TCP       # pi-hole web UI HTTP
+192.168.1.217     # Gateway = Unbound will default to this
+  7553:53 TCP       # unbound DNS
+  7553:53 UDP       # unbound DNS
+192.168.1.218     # First + Last
+192.168.1.219     # Broadcast
 ```
 
 ## Cloudflare DNS Records
@@ -145,15 +161,10 @@ http://proxy.site.com   # Un-proxied Congrats page
 https://proxy.site.com  # Proxied web UI
 
 #
-# Pi-hole - DONE
-http://192.168.1.209:7480/admin
-http://site.com:7480/admin
-
-# http://192.168.1.209:7480/admin
-# http://site.com:7480/admin
-
-# http://pi.site.com/admin
-https://pi.site.com/admin
+# Pi-hole
+http://192.168.1.216/admin        # pi_macvlan
+http://192.168.1.209:7480/admin   # nas_network
+https://site.com/admin            # Proxied nas_network
 
 #
 # Portainer - DONE

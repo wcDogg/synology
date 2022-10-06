@@ -85,6 +85,8 @@ Confirm you can sign in to NPM at https://proxy.site.com.
 
 ## Pi-hole SSL Certificate + Proxy Host
 
+Recall that the Pi-hole web UI is available via nas_network and pi_macvlan. Note this proxy host uses the nas_network IP.
+
 Set up Pi-hole in the same way as NPM.
 
 1. Obtain SSL certificate for pi.site.com
