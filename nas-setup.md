@@ -214,9 +214,7 @@ mdig, sshfs, ser2net
 
 ## Initial NAS Firewall Rules
 
-* Open all ports listed here:  [NAS and Docker nas_network](network.md/#nas-and-docker-nasnetwork) 
-* Docker ports are given like `7243:443` = NAS port : Docker port
-* Open the NAS ports - not the Docker ports
+See [Network Reference](network.md) for a list of initial firewall rules. 
 
 I create a rule for each port - vs opening  multiple ports with a single rule. This simplifies testing and management. 
 
@@ -234,6 +232,3 @@ I create a rule for each port - vs opening  multiple ports with a single rule. T
 80  TCP 192.168.1.209 80
 443 TCP 192.168.1.209 443
 ```
-
-
-

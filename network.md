@@ -1,6 +1,36 @@
 # Network Reference
 
 
+## NAS Firewall Rules
+
+```bash
+# Initial Rules
+
+7080 TCP    # NAS HTTP 5000
+7043 TCP    # NAS HTTPS 5001
+7022 TCP    # NAS SSH 22
+
+7243 TCP    # nginx-proxy HTTPS
+7280 TCP    # nginx-proxy HTTP
+7281 TCP    # nginx-proxy web UI
+
+7453 TCP    # pi-hole DNS
+7453 UDP    # pi-hole DNS
+7480 TCP    # pi-hole web UI HTTP
+
+7680 TCP    # portainer edge agents
+7643 TCP    # portainer web UI
+
+7780 TCP    # searxng web UI
+7880 TCP    # vaultwarden web UI
+32400 TCP   # Plex
+
+# Final Rules
+
+
+```
+
+
 ## Fios G3100 Router
 
 * Port Check: https://www.portchecktool.com/
@@ -18,15 +48,17 @@
 # Advanced > Network Settings > DNS Server
 site.com -> 192.168.1.209
 
-# Port forwarding to NAS during config
+# Port forwarding
 # Advanced > Security & Firewall > Port Forwarding
 # Origin port - Protocol - NAS IP - NAS port
+
+# Port forwarding to NAS during config
 80  TCP 192.168.1.209 80
 443 TCP 192.168.1.209 443
 
-# # Port forwarding once NAS is configured
-# 80  TCP 192.168.1.209 7080
-# 443 TCP 192.168.1.209 7043
+# # Port forwarding once NAS ports are configured
+80  TCP 192.168.1.209 7080
+443 TCP 192.168.1.209 7043
 
 # Port forwarding to NGINX 
 80  TCP 192.168.1.209 7280
@@ -64,14 +96,13 @@ site.com -> 192.168.1.209
   80 TCP            # Let's Encrypt  
   443 TCP           # Let's Encrypt
 
-172.29.7.4        # pi-hole server
+172.29.7.4        # pi-hole
   7453:53 TCP       # pi-hole DNS
   7453:53 UDP       # pi-hole DNS
   7480:80 TCP       # pi-hole web UI HTTP
-172.29.7.5        # unbound server
+172.29.7.5        # unbound
   7553:53 TCP       # unbound DNS
   7553:53 UDP       # unbound DNS
-
 
 172.29.7.6        # portainer
   7680:8000 TCP     # portainer edge agents
@@ -107,7 +138,9 @@ site.com -> 192.168.1.209
 
 ```bash
 # DNS records for site.com
-# Proxy Status = Disabled until SSL cert is obtained
+# Proxy Status = Disabled until SSL certs are obtained
+# Would normally use all A records to avoid 2nd hop,
+# but Cloudflare 'flattens' records. 
 
 A @           102.19.146.13  # Router public IPv4
 CNAME www     @
@@ -123,16 +156,16 @@ CNAME vault   @
 ## NGINX Proxy Hosts
 
 ```bash
-# Get SSL separate from creating proxy host
+# Get SSL first, then create proxy host
 proxy.site.com    http  192.168.1.209 7281
-pi.site.com       http 192.168.1.209 7480
+pi.site.com       http  192.168.1.209 7480
 
 # Okay to get SSL while creating proxy host
 dsm.site.com      https 192.168.1.209 7043
 plex.site.com     https 192.168.1.209 32400
 port.site.com     https 192.168.1.209 7643
-search.site.com   http 192.168.1.209 7780
-vault.site.com    http 192.168.1.209 7880
+search.site.com   http  192.168.1.209 7780
+vault.site.com    http  192.168.1.209 7880
 ```
 
 ## URL Progression
@@ -161,7 +194,7 @@ http://proxy.site.com   # Un-proxied Congrats page
 https://proxy.site.com  # Proxied web UI
 
 #
-# Pi-hole
+# Pi-hole - DONE
 http://192.168.1.216/admin        # pi_macvlan
 http://192.168.1.209:7480/admin   # nas_network
 https://site.com/admin            # Proxied nas_network

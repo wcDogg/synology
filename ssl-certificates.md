@@ -31,9 +31,9 @@ Confirm DSM is available at https://site.com:7043 - URL displays HTTPS and lock.
 All other services are still HTTP - for example, SearXNG is http://site.com:7780.
 
 
-## Router Port Forwarding
+## Forward Ports to NGINX Proxy Manager
 
-For subdomains to work, change your router's port forwarding rules from the NAS to NGINX Proxy Manager. 
+Required for subdomains + SSL certificates.
 
 ```bash
 # Port forwarding to NGINX
@@ -76,7 +76,7 @@ This step creates a proxy host for the NPM web UI using the proxy.site.com certi
    3. Block Common Exploits = True
    4. Websockets Support = False
 3. SSL tab
-   1. Use dropdown to select the proxy.site.com certificate
+   1. Dropdown > proxy.site.com certificate
    2. Force SSL = True
    3. Done
 
@@ -98,15 +98,16 @@ Confirm you can sign in at https://pi.site.com/admin
 
 ## SSL + Proxy Host in a Single Step
 
-With many services you can create the proxy host and obtain an SSL certificate in a single step. See [Network Reference](network.md) for running list of proxies that can be configured this way.
+With many services you can create the proxy host and obtain an SSL certificate in a single step.
 
 1. NGINX > Dashboard > Proxy Hosts > Add Proxy Host
 2. Details tab
-   1. Cache Assets = False (setting doesn't stick)
-   2. Block Common Exploits = True
-   3. Websockets Support = False
+   1. Domain Names = sub.site.com
+   2. Cache Assets = False (setting doesn't stick)
+   3. Block Common Exploits = True
+   4. Websockets Support = False
 3. SSL tab  
-   1. Use the dropdown to select Request New Certificate
+   1. Dropdown > Request New Certificate
    2. Force SSL = True
    3. Email = your@email.com
    4. Agree = True
@@ -114,7 +115,7 @@ With many services you can create the proxy host and obtain an SSL certificate i
 
 Confirm you can access your subdomains as expected - [Network Reference](network.md) has a running list of URLs.
 
-Confirm you can create a VaultWarden account.
+Recall that VaultWarden requires an SSL certificate - confirm you can create an account.
 
 
 ## Cloudflare: Proxy Router IP
