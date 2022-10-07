@@ -56,7 +56,7 @@ site.com -> 192.168.1.209
 80  TCP 192.168.1.209 80
 443 TCP 192.168.1.209 443
 
-# # Port forwarding once NAS ports are configured
+# Port forwarding once NAS ports are configured
 80  TCP 192.168.1.209 7080
 443 TCP 192.168.1.209 7043
 

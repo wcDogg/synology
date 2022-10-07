@@ -1,6 +1,7 @@
-# Dynamic DNS
+# Cloudflare Dynamic DNS on Synology NAS
 
 Most home routers are assigned a dynamic IP address - meaning it can change at any time. There are several options for automatically informing Cloudflare when the router's IP changes. I'm doing this by running a Docker container on the NAS.
+
 
 ## Cloudflare API Token
 

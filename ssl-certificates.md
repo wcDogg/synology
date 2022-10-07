@@ -117,18 +117,3 @@ Confirm you can access your subdomains as expected - [Network Reference](network
 
 Recall that VaultWarden requires an SSL certificate - confirm you can create an account.
 
-
-## Cloudflare: Proxy Router IP
-
-Once you have HTTPS access to all of your subdomains, it's time to hide your router's public IP address by enabling Cloudflare's proxy. 
-
-Before starting, do a [domain lookup](https://mxtoolbox.com/DNSLookup.aspx) for your site.com - note it shows your router's IP address.
-
-1. Log in to Cloudflare
-2. Left menu > Websites > site.com
-3. Left menu > DNS
-4. Edit each record. Toggle Proxy on.
-
-Do another domain lookup - the IP for site.com should now point to Cloudflare :)
-
-
