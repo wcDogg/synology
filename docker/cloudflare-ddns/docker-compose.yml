@@ -1,13 +1,21 @@
 version: '2'
 
+# https://hub.docker.com/r/oznu/cloudflare-ddns
+
+networks:
+  default:
+    name: nas_network
+
 services:
   cloudflare-ddns:
     image: oznu/cloudflare-ddns:latest
-    restart: always
+    container_name: cloudflare-ddns
+    hostname: cloudflare-ddns  
+    restart: unless-stopped
     environment:
-      - API_KEY=xxxxxxx
-      - ZONE=site.com
-      - PROXIED=false
-    dns:
-      - 127.0.0.1
-      - 1.1.1.1
+      - API_KEY=${CF_API_TOKEN}
+      - ZONE=${TOP_LEVEL_DOMAIN}
+    networks:
+      default:
+        ipv4_address: 172.29.7.9
+

@@ -114,6 +114,7 @@ site.com -> 192.168.1.209
 172.29.7.8        # vaultwarden
   7880:80           # vaultwarden web UI
 
+172.29.7.9        # cloudflare-ddns
 
 # Docker pi_macvlan
 # Look at your router and identify 4 sequential IP addresses not in use. 
