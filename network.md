@@ -27,7 +27,7 @@
 
 # Final Rules
 
-
+7022 TCP    # NAS SSH 22
 ```
 
 
@@ -52,15 +52,15 @@ site.com -> 192.168.1.209
 # Advanced > Security & Firewall > Port Forwarding
 # Origin port - Protocol - NAS IP - NAS port
 
-# Port forwarding to NAS during config
+# Initial port forwarding to NAS during config
 80  TCP 192.168.1.209 80
 443 TCP 192.168.1.209 443
 
 # Port forwarding once NAS ports are configured
-80  TCP 192.168.1.209 7080
-443 TCP 192.168.1.209 7043
+# 80  TCP 192.168.1.209 7080
+# 443 TCP 192.168.1.209 7043
 
-# Port forwarding to NGINX 
+# Final port forwarding to NGINX 
 80  TCP 192.168.1.209 7280
 443 TCP 192.168.1.209 7243
 ```

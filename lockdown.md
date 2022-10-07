@@ -3,10 +3,15 @@
 
 ## NAS Firewall
 
-See [Network Reference](network.md) for a list of final NAS firewall rules.
+The only port that needs to remain open is for SSH to the NAS. 
 
+```bash
+7022 TCP    # NAS SSH 22
+```
 
 ## Router Port Forwarding
+
+The only port forwarding needed is to NGINX Proxy manager.
 
 ```bash
 # Port forwarding to NGINX
@@ -14,11 +19,14 @@ See [Network Reference](network.md) for a list of final NAS firewall rules.
 443 TCP 192.168.1.209 7243
 ```
 
+## Test
+
+Once the NAS firewall rules are disabled and the router forwards to NGINX, ensure you still have HTTPS access to all of your subdomains. 
+
+
 ## Cloudflare: Proxy Router IP
 
-Once you have HTTPS access to all of your subdomains, it's time to hide your router's public IP address by enabling Cloudflare's proxy. 
-
-Before starting, do a [domain lookup](https://mxtoolbox.com/DNSLookup.aspx) for your site.com - note it shows your router's IP address.
+Do a [domain lookup](https://mxtoolbox.com/DNSLookup.aspx) for your site.com - note it shows your router's IP address.
 
 1. Log in to Cloudflare
 2. Left menu > Websites > site.com
