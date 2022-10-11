@@ -1,8 +1,8 @@
 # Install Pi-hole and Unbound on Synology NAS
 
-For other devices to use Pi-hole, we must expose its container on on LAN so that our router sees it as a device, just as it sees the NAS. This is done with a Docker macvlan network named `pi_macvlan`. 
+For other devices to use Pi-hole, we must expose its container on the LAN so that the router sees it as a device, just as it sees the NAS. This is done with a Docker macvlan network named `pi_macvlan`. 
 
-Pi-hole also needs a `pi_bridge` network to communicate with other NAS services. Ideally, we should use `nas_network` as this is it's purpose. But I couldn't figure out how to 
+Pi-hole also needs a bridge network to communicate with other NAS services - this is what `nas_network` is for.
 
 
 ## Interface Name
