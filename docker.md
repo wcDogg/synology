@@ -34,8 +34,7 @@ docker ps
 * The purpose of this network is to avoid port conflicts between the NAS and Docker containers. 
 * All Docker containers are added to this network.
 * Each container is given a static IP on this network via its `docker-compose.yml`.
-* Containers that need to communicate with each other - ie Pi-hole and Unbound - do NOT need a macvlan or bridge. 
-
+* Containers that need to communicate with each other - ie Pi-hole and Unbound - do NOT need a separate bridge. 
 
 **IMPORTANT** All Docker compose files assume this exact network. See [Network Reference: Docker nas_network](network.md) for a running list of containers in this project.
 
