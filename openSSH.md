@@ -135,6 +135,42 @@ cat /etc/ssh/sshd_config
 ssh -i ~/.ssh/wcd_nas_rsa4096 wcdogg@192.168.1.209 -p7022
 ```
 
+## Adding your custom key to your ssh client on OSX
+
+This step is only necessary if you gave your key a custom name in **Generate Key Pair** above.
+
+When creating your key pair, you choose what to name it. For example, the default name is 'id_rsa', but you can name it anything you like while creating it. However, if you choose a custom name, you'll need to let your SSH client know about the new key.
+
+You do this by starting ssh-agent. Start ssh-agent by running the following command. Make sure you use the backquote ` character and not a single quote – this backquote character is usually on the top left of your keyboard on the tilde ~ key:
+```bash
+eval `ssh-agent`
+```
+
+You can then run the following command (make sure to change customkey_rsa to your keyname):
+```bash
+ssh-add ~/.ssh/wcd_nas_rsa4096
+```
+
+You can then check to confirm it's been added by running the following:
+```bash
+ssh-add -l
+4096 SHA256:RR7rKshMC4YJuYkSzjLqjkSybcglc6PyzBsxHZWOLtc afreisinger@imac.local (RSA)
+```
+It will respond with your private key's fingerprint. You can confirm that fingerprint by generating a fingerprint from your custom key's public file.
+
+```bash
+ssh-keygen -l -f ~/.ssh/wcd_nas_rsa4096.pub
+4096 SHA256:RR7rKshMC4YJuYkSzjLqjkSybcglc6PyzBsxHZWOLtc afreisinger@imac.local (RSA)
+```
+Confirming the SSH connection
+
+If everything is configured properly, you should now be able to access your DreamHost account through SSH without a password. Run this command on your home computer where you just created the original keypair.
+
+```bash
+ssh wcdogg@192.168.1.209 -p7022
+```
+You should now be able to log in without using a password.
+
 **You can stop here.** The remaining steps are for adding your key to Windows Security Context so you don't have to pass in the key file.
 
 
